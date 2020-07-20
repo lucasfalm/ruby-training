@@ -2,7 +2,8 @@ def solution(a)
   ok = 1
   notOk = 0
   original = a.clone
-  
+
+  # O(N) or O(N * log(N))
   unless a.count == 0    
       return notOk if a.first <= 0 && a.last <= 0
       a.sort!.uniq!
@@ -31,7 +32,7 @@ def solution(a)
               last = actual
 
               next if last == -1 && actual == 1
-
+             
               math =  actual - before
 
               return notOk if math >= 2 || math <= -2
