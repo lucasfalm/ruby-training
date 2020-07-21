@@ -4,6 +4,9 @@ class MyArray
         setBackingArray()
     end
 
+    def showSize
+        @selfArray.size
+    end
     def getAtIndex(index)
         @selfArray[index] # O(1)
     end
@@ -16,7 +19,18 @@ class MyArray
         @selfArray[index] = value # O(1)
     end
 
-    def insertAtAll(value)
+    def resize()
+        clone = @selfArray.clone()
+        newArray = Array.new(@selfArray.size * 2 - clone.size)
+
+        newArray.unshift(clone)
+        newArray.flatten!
+    
+        @selfArray = newArray
+        @selfArray
+    end
+
+    def insertAll(value)
         @selfArray = @selfArray.map { |v| v = value } # O(n)
     end
 
