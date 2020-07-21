@@ -1,24 +1,27 @@
 
-string = "aabbccd"
+string = "aabbdbc"
 non_repeating(string)
 
 # Big O(n)
 def non_repeating(string)
     letters = string.split("")
-    wordsMap = Hash.new(0)
+    lettersMap = Hash.new(0)
     lastAlone = ""
 
     letters.each do |letter|
-        wordsMap[letter] += 1
+        lettersMap[letter] += 1
+    end
 
-        if wordsMap[letter] % 2 != 0
+    lettersMap.each do |letter, value|
+        if value % 2 != 0
             lastAlone = letter
+            break
         end
     end
 
-    if wordsMap[lastAlone] % 2 == 0 
+    if lettersMap[lastAlone] % 2 == 0 
         return nil
     end
 
-    lastAlone
+    lastAlone    
 end
