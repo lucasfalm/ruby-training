@@ -21,7 +21,9 @@ class MyArray
 
     def resize()
         clone = @selfArray.clone() # O(n)
-        newArray = Array.new(@selfArray.size * 2 - clone.size) # O(1)
+    
+        newSize = @selfArray.size * 2 - clone.size
+        newArray = Array.new(newSize) # O(1)
 
         newArray.unshift(clone) # O(n)
         newArray.flatten! # O(n)
@@ -40,6 +42,19 @@ class MyArray
 
     def insertAtEnd(value)
         @selfArray << value # O(1)
+    end
+
+    def contains?(value)
+        flag = false
+        @selfArray.each do |v|
+            flag = true if v == value 
+        end
+
+        flag
+    end
+
+    def clearAll
+        @selfArray.clear
     end
 
     def insertAtFirst(value)
