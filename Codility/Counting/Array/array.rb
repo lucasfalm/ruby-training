@@ -4,15 +4,11 @@ class MyArray
         setBackingArray()
     end
 
-    def setBackingArray()
-        @selfArray = Array.new(@size) # O(1)
-    end
-
     def getAtIndex(index)
         @selfArray[index] # O(1)
     end
 
-    def showAll()
+    def showAll
         @selfArray # O(1)
     end
 
@@ -38,6 +34,12 @@ class MyArray
 
     def deleteAtIndex(index)
         @selfArray.delete(index) # O(n)
+    end
+
+    private 
+
+    def setBackingArray
+        @selfArray = Array.new(@size) # O(1)
     end
 end
 
