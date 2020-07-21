@@ -1,6 +1,6 @@
 
-one = "aaa"
-two = "abc"
+one = "adbefg"
+two = "adeb"
 
 is_one_away(one, two)
 
@@ -15,26 +15,34 @@ def is_one_away(sla,slb)
     count = 0
     equal = false
 
-    while p1 <= aMaxLength && p2 <= bMaxLength do
-        puts bSlb[p2]
-        if aSla[p1] == bSlb[p2]
-            equal = true
-            p1 += 1
-            p2 += 1
-            next
-        else
-            p2 += 1
-            equal = false
-        end
+    if aMaxLength - bMaxLength <= 1 || aMaxLength - bMaxLength >= -1
+        while p1 <= aMaxLength && p2 <= bMaxLength do
+            if aSla[p1] == bSlb[p2]
+                equal = true
+                p1 += 1
+                p2 += 1
+                next
+            else
+                p2 += 1
+                equal = false
+            end
+            
+            if aMaxLength > bMaxLength && bMaxLength < p2
+                p2 = 0
+            end
 
-        if p2 > bMaxLength && equal == false
-            count += 1
+            if bMaxLength < p2 && !equal 
+                count += 1
+                p2 = p1 - 1
+            end
+            return false if count >= 2
+            return false if count >= 1 && aMaxLength < bMaxLength
         end
-        return false if count >= 2
-        return false if count >= 1 && aMaxLength < bMaxLength
-    end
     
-    return true
+        return true
+    else
+        return false
+    end
 end
 
 is_one_away(one, two)
