@@ -4,7 +4,7 @@ two = "adeb"
 
 is_one_away(one, two)
 
-# Big O(n)
+# Big O(n) or O(n log n)
 def is_one_away(sla,slb)
     aSla = sla.split("")
     bSlb = slb.split("")
@@ -15,22 +15,21 @@ def is_one_away(sla,slb)
     count = 0
     equal = false
 
-    if aMaxLength - bMaxLength <= 1 || aMaxLength - bMaxLength >= -1
+    if aMaxLength - bMaxLength <= 1 && aMaxLength - bMaxLength >= -1
+        if aMaxLength > bMaxLength && bMaxLength < p2
+            p2 = 0
+        end
+    
         while p1 <= aMaxLength && p2 <= bMaxLength do
             if aSla[p1] == bSlb[p2]
                 equal = true
                 p1 += 1
                 p2 += 1
-                next
             else
                 p2 += 1
                 equal = false
             end
             
-            if aMaxLength > bMaxLength && bMaxLength < p2
-                p2 = 0
-            end
-
             if bMaxLength < p2 && !equal 
                 count += 1
                 p2 = p1 - 1
