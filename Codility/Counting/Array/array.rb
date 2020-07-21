@@ -46,15 +46,15 @@ class MyArray
 
     def contains?(value)
         flag = false
-        @selfArray.each do |v|
-            flag = true if v == value 
+        @selfArray.each do |v| # O(n)
+            flag = true if v == value # O(1) 
         end
 
         flag
     end
 
     def clearAll
-        @selfArray.clear
+	    @selfArray = Array.new(@selfArray.size)
     end
 
     def insertAtFirst(value)
