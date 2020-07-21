@@ -1,5 +1,5 @@
 
-string = "aabbdbc"
+string = "aabbdbcdcb"
 non_repeating(string)
 
 # Big O(n)
@@ -19,9 +19,7 @@ def non_repeating(string)
         end
     end
 
-    if lettersMap[lastAlone] % 2 == 0 
-        return nil
-    end
+    return nil if lastAlone == ""
 
     lastAlone    
 end
