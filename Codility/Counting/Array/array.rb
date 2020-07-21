@@ -20,13 +20,13 @@ class MyArray
     end
 
     def resize()
-        clone = @selfArray.clone()
-        newArray = Array.new(@selfArray.size * 2 - clone.size)
+        clone = @selfArray.clone() # O(n)
+        newArray = Array.new(@selfArray.size * 2 - clone.size) # O(1)
 
-        newArray.unshift(clone)
-        newArray.flatten!
+        newArray.unshift(clone) # O(n)
+        newArray.flatten! # O(n)
     
-        @selfArray = newArray
+        @selfArray = newArray # O(1)
         @selfArray
     end
 
