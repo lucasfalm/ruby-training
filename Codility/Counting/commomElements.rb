@@ -4,7 +4,7 @@ arrayTwo = [3,4,5,6,7,8,9,10]
 
 commom_elements(arrayOne, arrayTwo)
 
-# Big O(n, m)
+# Big O(n + m)
 def commom_elements(arrayOne, arrayTwo)
     p1 = 0
     p2 = 0
