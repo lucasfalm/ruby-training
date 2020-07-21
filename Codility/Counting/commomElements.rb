@@ -16,6 +16,7 @@ def commom_elements(arrayOne, arrayTwo)
         if arrayOne[p1] == arrayTwo[p2]
             commomElements << arrayOne[p1]
             p1 += 1
+            p2 += 1
         elsif arrayOne[p1] < arrayTwo[p2]
             p1 += 1
         else
