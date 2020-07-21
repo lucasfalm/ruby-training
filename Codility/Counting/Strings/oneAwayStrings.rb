@@ -15,7 +15,7 @@ def is_one_away(sla,slb)
     count = 0
     equal = false
 
-    if aMaxLength - bMaxLength <= 1 && aMaxLength - bMaxLength >= -1
+    if aMaxLength - bMaxLength == 1 || aMaxLength - bMaxLength == -1
         if aMaxLength > bMaxLength && bMaxLength < p2
             p2 = 0
         end
