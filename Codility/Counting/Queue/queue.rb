@@ -9,20 +9,19 @@ class Queue
 
     # Big O(1)
     def enqueue(data)
-        incrementSize()
-        
         newNode = Node.new(data)
-
-        if @tail != "" || @tail.value != ""
+        
+        if @size >= 1
             @tail.nextNode = newNode
         end
         
         @tail = newNode
-
-        if @head == ""  || @head.value == ""
+        
+        if @size == 0
             @head = @tail
         end
-            
+        
+        incrementSize()
         return @tail.value
     end
 
@@ -31,15 +30,15 @@ class Queue
         return "Empty Queue" if @size == 0
         
         currentNode = @head
-        decrementSize()
-
-        if @head == @tail
+        
+        if @size == 1
             @head = Node.new("")
             @tail = @head
-            return currentNode.value
+        else
+            @head = currentNode.nextNode
         end
-
-        @head = currentNode.nextNode
+        
+        decrementSize()
         return currentNode.value
     end
 
