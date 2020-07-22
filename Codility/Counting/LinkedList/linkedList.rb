@@ -47,6 +47,31 @@ class LinkedList
         end
     end
 
+      # Big O(n)
+      def deleteIn(pos)
+        return "Not Found" if @size == 0 || pos > @size
+
+        counter = 0
+        currentNode = @head
+    
+        while counter < pos
+            if pos - counter == 1
+                decrementSize()
+                
+                currentNode.nextNode = currentNode.nextNode.nextNode
+        
+                if @size == 0 
+                    currentNode.value = ""
+                end
+        
+                return true
+            else
+                counter += 1
+                currentNode = currentNode.nextNode
+            end
+        end
+    end
+
     # Big O(1)
     def getFirst
         currentNode = @head
