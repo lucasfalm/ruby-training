@@ -93,6 +93,10 @@ class LinkedList
         incrementSize()
     end
 
+    def size
+        return @size
+    end
+
     private
     # Big O(1)
     def incrementSize
