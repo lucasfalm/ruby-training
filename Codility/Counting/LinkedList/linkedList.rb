@@ -69,6 +69,16 @@ class LinkedList
         end
     end
 
+    # Big O(1)
+    def clear
+        newNode = Node.new()
+        
+        @head = newNode
+        @size = 0
+        
+        return @head
+    end
+
     # Big O(n) or Big (n log n)
     def addBack(value)
         currentNode = @head
@@ -93,6 +103,7 @@ class LinkedList
         incrementSize()
     end
 
+    # Big O(1)
     def size
         return @size
     end
