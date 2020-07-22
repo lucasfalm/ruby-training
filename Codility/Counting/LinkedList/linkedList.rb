@@ -22,6 +22,31 @@ class LinkedList
         return @head.value
     end
 
+    # Big O(n)
+    def deleteLast
+        return "Empty linkedset" if @size == 0
+
+        counter = 0
+        currentNode = @head
+        
+        while counter < @size
+            if @size - counter == 1
+                decrementSize()
+                
+                currentNode.nextNode = ""
+        
+                if @size == 0 
+                    currentNode.value = ""
+                end
+        
+                return true
+            else
+                counter += 1
+                currentNode = currentNode.nextNode
+            end
+        end
+    end
+
     # Big O(1)
     def getFirst
         currentNode = @head
@@ -45,7 +70,7 @@ class LinkedList
     end
 
     # Big O(n) or Big (n log n)
-    def insertLast(value)
+    def addBack(value)
         currentNode = @head
         counter = 0
         newNode = Node.new(value)
@@ -64,12 +89,18 @@ class LinkedList
             end
             currentNode = currentNode.nextNode
         end
+
+        incrementSize()
     end
 
     private
     # Big O(1)
     def incrementSize
         @size += 1
+    end
+
+    def decrementSize
+        @size -= 1
     end
 end
 
