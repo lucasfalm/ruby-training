@@ -1,30 +1,38 @@
 class LinkedList
-    private 
-    @head = ""
-
-    class Node
-        def initialize(data)
-            @data = data
-        end
-        
-        @nextNode = ""
-
-        def setNext(node)
-            @nextNode = node
-        end
+    def initialize(value = "")
+        @head = Node.new(value)
     end
 
-    public
+    def addFront(data)
+        currentNode = @head
 
-    def addFront(data)        
         newNode = Node.new(data)
-        
-        if @head == ""
+    
+        if currentNode.value == ""
             @head = newNode
-            return
+            return @head
         end
 
-        @head.setNext(newNode)
+        @head.nextNode = newNode if @head.value != ""
         @head = newNode
+        return newNode
+    end
+
+    def getFirst
+        currentNode = @head
+        return "Empty linked list" if currentNode.value == ""
+        return currentNode
     end
 end
+
+class Node
+    attr_accessor :value, :next
+  
+    def initialize(value, next_node = "")
+        @value = value
+        @nextNode = next_node
+    end
+end
+
+l = LinkedList.new
+l.addFront(2)
