@@ -46,6 +46,27 @@ class LinkedList
             currentNode = currentNode.nextNode
         end
     end
+
+    def insertLast(value)
+        currentNode = @head
+        counter = 0
+        newNode = Node.new(value)
+
+        if currentNode.nextNode == "" 
+            currentNode.nextNode = newNode
+            return newNode.value
+        end
+    
+        while counter <= @size
+            counter += 1
+            
+            puts currentNode
+            if currentNode.nextNode == "" 
+                currentNode.nextNode = newNode
+                return currentNode.nextNode.value
+            end
+        end
+    end
 end
 
 class Node
