@@ -6,8 +6,9 @@ class LinkedList
         @size = 0
     end
 
+    # Big O(1)
     def addFront(data)
-        @size += 1
+        incrementSize()
         
         actualNode = @head
         newNode = Node.new(data)
@@ -21,32 +22,31 @@ class LinkedList
         return @head.value
     end
 
+    # Big O(1)
     def getFirst
         currentNode = @head
         return "Empty linked list" if currentNode.value == ""
         return currentNode.value
     end
 
+    # Big O(n)
     def getLast
         currentNode = @head
-        lastNode = ""
         counter = 0
-            
-        if currentNode.nextNode == "" 
-            lastNode = currentNode
-            return lastNode.value
-        end
+    
+        return currentNode.value if @size == 1
     
         while counter <= @size
             counter += 1
-            if currentNode.nextNode == "" 
+ 
+            if currentNode.nextNode == ""
                 return currentNode.value
             end
-
             currentNode = currentNode.nextNode
         end
     end
 
+    # Big O(n) or Big (n log n)
     def insertLast(value)
         currentNode = @head
         counter = 0
@@ -59,13 +59,19 @@ class LinkedList
     
         while counter <= @size
             counter += 1
-            
-            puts currentNode
+
             if currentNode.nextNode == "" 
                 currentNode.nextNode = newNode
                 return currentNode.nextNode.value
             end
+            currentNode = currentNode.nextNode
         end
+    end
+
+    private
+    # Big O(1)
+    def incrementSize
+        @size += 1
     end
 end
 
