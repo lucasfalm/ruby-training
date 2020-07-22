@@ -1,34 +1,57 @@
 class LinkedList
+    attr_accessor :head, :size
+
     def initialize(value = "")
         @head = Node.new(value)
+        @size = 0
     end
 
     def addFront(data)
-        currentNode = @head
-
+        @size += 1
+        
+        actualNode = @head
         newNode = Node.new(data)
-    
-        if currentNode.value == ""
-            @head = newNode
-            return @head
-        end
 
-        @head.nextNode = newNode if @head.value != ""
-        @head = newNode
-        return newNode
+        if actualNode.value == ""
+            @head = newNode
+        else
+            newNode.nextNode = actualNode
+            @head = newNode
+        end
+        return @head.value
     end
 
     def getFirst
         currentNode = @head
         return "Empty linked list" if currentNode.value == ""
-        return currentNode
+        return currentNode.value
+    end
+
+    def getLast
+        currentNode = @head
+        lastNode = ""
+        counter = 0
+            
+        if currentNode.nextNode == "" 
+            lastNode = currentNode
+            return lastNode.value
+        end
+    
+        while counter <= @size
+            counter += 1
+            if currentNode.nextNode == "" 
+                return currentNode.value
+            end
+
+            currentNode = currentNode.nextNode
+        end
     end
 end
 
 class Node
-    attr_accessor :value, :next
+    attr_accessor :value, :nextNode
   
-    def initialize(value, next_node = "")
+    def initialize(value = "", next_node = "")
         @value = value
         @nextNode = next_node
     end
