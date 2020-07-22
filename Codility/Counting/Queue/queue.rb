@@ -6,7 +6,7 @@ class Queue
         @tail = Node.new(value)
         @size = 0
     end
-
+    # Out << [2, 1] << new value
     # Big O(1)
     def enqueue(data)
         newNode = Node.new(data)
@@ -44,8 +44,9 @@ class Queue
 
     # Big O(1)
     def peek
+        return "Empty Queue" if @size == 0
+    
         currentNode = @head
-        return "Empty Queue" if currentNode == ""
         return currentNode.value
     end
 
