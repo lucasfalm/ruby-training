@@ -39,9 +39,7 @@ class LinkedList
         while counter <= @size
             counter += 1
  
-            if currentNode.nextNode == ""
-                return currentNode.value
-            end
+            return currentNode.value if currentNode.nextNode == ""           
             currentNode = currentNode.nextNode
         end
     end
