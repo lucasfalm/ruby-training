@@ -54,7 +54,7 @@ class MyArray
     end
 
     def clearAll
-	    @selfArray = Array.new(@selfArray.size)
+	    @selfArray = Array.new(@selfArray.size) # O(1)
     end
 
     def insertAtFirst(value)
