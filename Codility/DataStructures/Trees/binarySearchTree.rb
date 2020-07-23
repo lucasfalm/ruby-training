@@ -3,7 +3,7 @@ class BinarySearchTree
 
     # Big O(log n)
     def find(key)
-        node = Node.find(@root, key)
+        node = @root.find(key)
         if node == nil 
             return node
         else
@@ -11,6 +11,7 @@ class BinarySearchTree
         end
     end
 
+    # Big O(log n)
     def insert(key, value)
         node = Node.new()
         node.key = key
@@ -21,7 +22,12 @@ class BinarySearchTree
             return @root
         end
     
-        Node.insert(node, @root)
+       @root.insert(node)
+    end
+
+    def min
+        min = Node.min(@root)
+        return min
     end
 end
 
@@ -36,32 +42,34 @@ class Node
     end
 
     # Big O(1)
-    def min
-        if left == nil 
-            return left
+    def min(root)
+        return "Empty tree" if root == nil
+
+        if root.left == nil
+            return root.value
         else
-            return left.min
+            return root.left.min
         end
     end
 
     # Big O(n log)
-    def self.find(root, key)
-        if root == nil 
+    def find(key)
+        if self == nil 
             return root
-        elsif key == root.key
+        elsif key == self.key
             return root
-        elsif key < root.key
-            return find(root.left, key)
-        elsif key > root.key 
-            return find(root.right, key)
+        elsif key < self.key
+            return self.left.find(key)
+        elsif key > self.key 
+            return self.right.find(key)
         end
     end
 
     # Big O(n log)
-    def self.insert(node, root)
+    def insert(node, root)
         return "Key already exists" if node.key == root.key
     
-        if node.key < root.key
+        if node.value < root.value
             if root.left == nil
                 root.left = node
                 return node.value
@@ -69,8 +77,8 @@ class Node
         
             return insert(node, root.left)
     
-        elsif node.key > root.key
-            if root.right == nil 
+        elsif node.value > root.value
+            if root.right == nil
                 root.right = node
                 return node.value
             end
