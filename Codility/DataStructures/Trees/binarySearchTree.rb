@@ -25,10 +25,19 @@ class BinarySearchTree
        @root.insert(node)
     end
 
+    # Big O(log n)
     def min
-        min = @root.min
-        return min
+        min, key = @root.min
+        return min, key
     end
+
+
+    def delete(value)
+        response = @root.delete(value)
+        return "Error" if !response
+        return "Success!"
+    end
+
 end
 
 class Node
@@ -44,12 +53,45 @@ class Node
     # Big O(1)
     def min
         return "Empty tree" if self == nil
-
         if self.left == nil
-            return self.value
+            return self.value, self.key
         else
             return self.left.min
         end
+    end
+
+    def delete(value)
+       
+        if value < self.value
+            return self.left.delete(value) if self.left != nil
+            return false
+        elsif value > self.value
+            return self.right.delete(value) if self.right != nil
+            return false
+        elsif value == self.value
+            if self.right == nil && self.left == nil
+                self.value = nil
+                self.key = nil
+                return true
+            elsif self.right != nil && self.left == nil 
+                self.value = self.right.value
+                self.key = self.right.key
+                self.right = nil
+                return true
+            elsif self.right == nil && self.left != nil
+                self.value = self.right.value
+                self.key = self.left.key
+                self.left = nil
+                return true
+            else
+                minValue = self.right.min
+                self = minValue
+                self.right.min = nil
+                return true
+            end
+        end
+        
+        return false
     end
 
     # Big O(n log)
@@ -83,9 +125,10 @@ class Node
                 return node.value
             end
         
-            return self.rigth.insert(node)
+            return self.right.insert(node)
         end
     end
 end
+
 
 bst = BinarySearchTree.new
