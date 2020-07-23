@@ -67,7 +67,7 @@ class Node
                 return node.value
             end
         
-            return insert(key, root.left)
+            return insert(node, root.left)
     
         elsif node.key > root.key
             if root.right == nil 
@@ -75,7 +75,7 @@ class Node
                 return node.value
             end
         
-            return insert(key, root.right)
+            return insert(node, root.right)
         end
     end
 end
