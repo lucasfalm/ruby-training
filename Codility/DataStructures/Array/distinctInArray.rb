@@ -1,3 +1,4 @@
+# Big O(n log n) or O(n)
 def solution(a)
     unless a.count == 0
         return 1 if a.count == 1
