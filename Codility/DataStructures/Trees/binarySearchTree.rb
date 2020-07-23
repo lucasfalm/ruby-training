@@ -32,7 +32,7 @@ class BinarySearchTree
     end
 
 
-    def delete(value)
+    def delete(key)
         response = @root.delete(value)
         return "Error" if !response
         return "Success!"
@@ -61,16 +61,16 @@ class Node
     end
 
     # Big O(log n)
-    def delete(value)
-        return false if self.value == nil
+    def delete(key)
+        return false if self.key == nil
     
-        if value < self.value
-            return self.left.delete(value) if self.left != nil
+        if key < self.key
+            return self.left.delete(key) if self.left != nil
             return false
-        elsif value > self.value
-            return self.right.delete(value) if self.right != nil
+        elsif key > self.key
+            return self.right.delete(key) if self.right != nil
             return false
-        elsif value == self.value
+        elsif key == self.key
             if self.right == nil && self.left == nil
                 self.value = nil
                 self.key = nil
@@ -120,7 +120,7 @@ class Node
             return self.value
         end
         
-        if node.value < self.value
+        if node.key < self.key
             if self.left == nil
                 self.left = node
                 return node.value
@@ -128,7 +128,7 @@ class Node
         
             return self.left.insert(node)
     
-        elsif node.value > self.value
+        elsif node.key > self.key
             if self.right == nil
                 self.right = node
                 return node.value
