@@ -45,15 +45,15 @@ class Node
     end
 
     # Big O(n log)
-    def self.find(node, key)
-        if node == nil 
-            return node
-        elsif key == node.key
-            return node
-        elsif key < node.key
-            return find(node.left, key)
-        elsif key > node.key 
-            return find(node.right, key)
+    def self.find(root, key)
+        if root == nil 
+            return root
+        elsif key == root.key
+            return root
+        elsif key < root.key
+            return find(root.left, key)
+        elsif key > root.key 
+            return find(root.right, key)
         end
     end
 
