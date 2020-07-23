@@ -3,11 +3,11 @@ class BinarySearchTree
 
     # Big O(log n)
     def find(key)
-        node = @root.find(key)
-        if node == nil 
-            return node
+        value = @root.find(key)
+        if value == nil 
+            return value
         else
-            return node.value
+            return value
         end
     end
 
@@ -33,7 +33,7 @@ class BinarySearchTree
 
 
     def delete(key)
-        response = @root.delete(value)
+        response = @root.delete(key)
         return "Error" if !response
         return "Success!"
     end
@@ -81,7 +81,7 @@ class Node
                 self.right = nil
                 return true
             elsif self.right == nil && self.left != nil
-                self.value = self.right.value
+                self.value = self.left.value
                 self.key = self.left.key
                 self.left = nil
                 return true
