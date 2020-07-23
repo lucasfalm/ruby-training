@@ -27,8 +27,8 @@ class BinarySearchTree
 
     # Big O(log n)
     def min
-        min, key = @root.min
-        return min, key
+        min = @root.min
+        return min.value
     end
 
 
@@ -54,14 +54,16 @@ class Node
     def min
         return "Empty tree" if self == nil
         if self.left == nil
-            return self.value, self.key
+            return self
         else
             return self.left.min
         end
     end
 
+    # Big O(log n)
     def delete(value)
-       
+        return false if self.value == nil
+    
         if value < self.value
             return self.left.delete(value) if self.left != nil
             return false
@@ -84,9 +86,10 @@ class Node
                 self.left = nil
                 return true
             else
-                minValue = self.right.min
-                self = minValue
-                self.right.min = nil
+                min = self.right.min
+                self.value = min.value
+                self.key = min.key
+                min = nil
                 return true
             end
         end
@@ -110,7 +113,13 @@ class Node
     # Big O(n log)
     def insert(node)
         return "Key already exists" if node.key == self.key
-    
+        
+        if self.value == nil
+            self.value = node.value
+            self.key = node.key
+            return self.value
+        end
+        
         if node.value < self.value
             if self.left == nil
                 self.left = node
@@ -126,6 +135,8 @@ class Node
             end
         
             return self.right.insert(node)
+        else
+            return self.value
         end
     end
 end
