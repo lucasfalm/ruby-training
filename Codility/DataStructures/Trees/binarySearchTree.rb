@@ -31,11 +31,16 @@ class BinarySearchTree
         return min.value
     end
 
-
+    # Big O(log n)
     def delete(key)
         response = @root.delete(key)
         return "Error" if !response
         return "Success!"
+    end
+
+    def inOrderTraversal
+        current = @root
+        current.inOrderTraversal
     end
 
 end
@@ -57,6 +62,17 @@ class Node
             return self
         else
             return self.left.min
+        end
+    end
+
+    # Big O(log n)
+    def inOrderTraversal
+        if self.value != nil 
+            self.left.inOrderTraversal if self.left != nil
+            puts self.left.key if self.left != nil
+            self.right.inOrderTraversal if self.right != nil
+        else
+            return
         end
     end
 
@@ -89,7 +105,8 @@ class Node
                 min = self.right.min
                 self.value = min.value
                 self.key = min.key
-                min = nil
+            
+                self.right = self.delete(self.right, self.key)
                 return true
             end
         end
@@ -143,3 +160,7 @@ end
 
 
 bst = BinarySearchTree.new
+a = [1,2,3,4,5,6,7,8,9,10]
+a.shuffle!.each do |v|
+    bst.insert(v,v)
+end
