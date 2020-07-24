@@ -46,8 +46,8 @@ class Graph
           
             current_node.adjacent_nodes.each do |node|
                 if !visited.include?(node)
-                visited << node
-                to_visit << node
+                    visited << node
+                    to_visit << node
                 end
             end
         end
