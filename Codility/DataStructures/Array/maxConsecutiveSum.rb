@@ -1,9 +1,10 @@
+# a = [3, 2, -1, 4, 5, -2]
 def arrayMaxConsecutiveSum2(inputArray)
     max_so_far_evaluated = 0
     max_for_each_iteration = 0
-    
+
     inputArray.each do |element|
-        max_for_each_iteration = max_for_each_iteration + element
+        max_for_each_iteration += element
         if(max_for_each_iteration < 0)
             max_for_each_iteration = 0
         end
