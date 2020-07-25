@@ -2,9 +2,9 @@ def prison_after_n_days(cells, n)
     daysLeft = 1
     
     while daysLeft <= n
+        n = n % cells.count
         cells = calculate(cells, n)
         daysLeft += 1
-        p cells
     end
     
     return cells
@@ -19,7 +19,11 @@ def calculate(cells, n)
     i = 0
     
     while i <= cells.count - 1
-        if cells[pleft] != cells[pright]
+        if p0 == 0
+            nextState[p0] = 0
+        elsif pright >= cells.count
+            nextState[p0] = 0
+        elsif cells[pleft] != cells[pright]
             nextState[p0] = 0
         elsif cells[pleft] == cells[pright]
             nextState[p0] = 1
