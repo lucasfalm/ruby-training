@@ -37,3 +37,12 @@ def calculate(cells, n)
     cells = nextState  
     return cells
 end
+
+while i <= b.size - 1
+  while y <= b[i].size - 1  
+    p b[i][y]    
+    y += 1
+  end
+  y = 0
+  i += 1
+end
