@@ -15,16 +15,17 @@ def calculate(cells, n)
     pleft = p0 - 1
     pright = p0 + 1
     
-    i = 0 
+    i = 0
+    
     while i <= cells.count - 1
         if pleft < 0
             nextState[p0] = 0
         elsif pright >= cells.count - 1
             nextState[p0] = 0
         elsif cells[pleft] != cells[pright]
-            nextState[p0] = 1
-        elsif cells[pleft] == cells[pright]
             nextState[p0] = 0
+        elsif cells[pleft] == cells[pright]
+            nextState[p0] = 1
         end
         p0 += 1
         pleft = p0 - 1
@@ -32,12 +33,7 @@ def calculate(cells, n)
         
         i += 1 
     end
-    y = 0
-
-    while y <= nextState.count - 1
-        cells[y] = nextState[y]
-        y += 1
-    end
+    cells = nextState
 
     p0 = 0
     pleft = p0 - 1
