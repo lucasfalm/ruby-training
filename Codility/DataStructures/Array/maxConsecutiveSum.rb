@@ -1,22 +1,16 @@
 def arrayMaxConsecutiveSum2(inputArray)
-    maxSum = 0
-    actualResult = 0
-    size = inputArray.count
-    i = 0
- 
-     while i <= size
-         current = inputArray.shift
-         if current.to_i <= 0
-             if actualResult > maxSum
-                 maxSum = actualResult
-             end
-             actualResult = 0
-         else
-             actualResult += current.to_i
-         end 
-         i += 1
-     end 
-     return -1 if maxSum <= 0
-     return maxSum
- end
- 
+    max_so_far_evaluated = 0
+    max_for_each_iteration = 0
+        inputArray.each do |element|
+            max_for_each_iteration = max_for_each_iteration + element
+            if(max_for_each_iteration < 0)
+                max_for_each_iteration = 0
+            end
+            if(max_so_far_evaluated < max_for_each_iteration)
+                max_so_far_evaluated = max_for_each_iteration
+            end
+        end
+
+    return -1 if max_so_far_evaluated == 0
+    max_so_far_evaluated
+end
