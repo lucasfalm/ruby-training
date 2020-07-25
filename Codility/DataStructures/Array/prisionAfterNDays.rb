@@ -34,11 +34,6 @@ def calculate(cells, n)
         
         i += 1 
     end
-    cells = nextState
-
-    p0 = 0
-    pleft = p0 - 1
-    pright = p0 + 1
-  
+    cells = nextState  
     return cells
 end
