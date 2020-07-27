@@ -6,7 +6,7 @@ class LinkedList
         @size = 0
     end
 
-    # Big O(1)
+    # Big O(1) space complexity O(1)
     def addFront(data)
         incrementSize()
         
@@ -22,7 +22,7 @@ class LinkedList
         return @head.value
     end
 
-    # Big O(n)
+    # Big O(n) space complexity O(n)
     def deleteLast
         return "Empty linkedset" if @size == 0
 
@@ -47,7 +47,7 @@ class LinkedList
         end
     end
 
-      # Big O(n)
+      # Big O(n) space complexity O(n)
       def deleteIn(pos)
         return "Not Found" if @size == 0 || pos > @size
 
@@ -72,7 +72,7 @@ class LinkedList
         end
     end
 
-    # Big O(1)
+    # Big O(1) space complexity O(1)
     def getFirst
         currentNode = @head
         return "Empty linked list" if currentNode.value == ""
@@ -94,7 +94,7 @@ class LinkedList
         end
     end
 
-    # Big O(1)
+    # Big O(1) space complexity O(1)
     def clear
         newNode = Node.new()
         
