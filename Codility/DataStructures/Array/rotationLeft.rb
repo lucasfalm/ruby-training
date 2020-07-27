@@ -1,13 +1,13 @@
-# Big O(N) or (n log n)
+# Big O(n) time and O(n) space
 def rotLeft(a, d)
-    rotated = Array.new(0)
-    i = 1
+    counter = 1
 
-    while i <= d
+    while counter <= d
         last = a.shift
         a.push(last)
-        i += 1
+    
+        counter += 1
     end
 
-    return a
+    a
 end
