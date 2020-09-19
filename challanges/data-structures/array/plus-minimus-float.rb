@@ -16,13 +16,13 @@ def plusMinus(arr)
         zeros += 1 if number == 0
     end
 
-    negatives = (negatives / arr.count.to_f).round(6)
-    positives = (positives / arr.count.to_f).round(6)
-    zeros = (zeros / arr.count.to_f).round(6)
+    negative_division_result = (negatives / arr.count.to_f).round(6)
+    positives_division_result = (positives / arr.count.to_f).round(6)
+    zeros_division_result = (zeros / arr.count.to_f).round(6)
 
-    printf("%.6f\n", positives)
-    printf("%.6f\n", negatives)
-    printf("%.6f\n", zeros)
+    printf("%.6f\n", positives_division_result)
+    printf("%.6f\n", negative_division_result)
+    printf("%.6f\n", zeros_division_result)
 end
 
 n = gets.to_i
