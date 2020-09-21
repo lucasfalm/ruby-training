@@ -12,26 +12,26 @@ require 'stringio'
 # https://www.hackerrank.com/challenges/grading/problem
 
 def gradingStudents(grades)
-    final_grade = []
+    final_grades = []
 
     grades.each do |grade|
         if grade < 38
-            final_grade << grade
+            final_grades << grade
             next
         end
 
         digits = grade.to_s.split('')
-        last_digit = (digits[digits.count - 1]).to_i
+        last_digit = (digits.last).to_i
 
         if (last_digit == 4 || last_digit == 9)
-            final_grade << grade + 1 
+            final_grades << grade + 1 
         elsif (last_digit == 3 || last_digit == 8)
-            final_grade << grade + 2
+            final_grades << grade + 2
         else
-            final_grade << grade
+            final_grades << grade
         end
     end
-    final_grade
+    final_gradess
 end
 
 fptr = File.open(ENV['OUTPUT_PATH'], 'w')
