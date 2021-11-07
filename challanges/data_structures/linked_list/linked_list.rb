@@ -7,98 +7,98 @@ class LinkedList
     end
 
     # Big O(1) space complexity O(1)
-    def addFront(data)
-        incrementSize()
+    def add_front(data)
+        increment_size()
         
-        actualNode = @head
-        newNode = Node.new(data)
+        actual_node = @head
+        new_node = Node.new(data)
 
-        if actualNode.value == ""
-            @head = newNode
+        if actual_node.value == ""
+            @head = new_node
         else
-            newNode.nextNode = actualNode
-            @head = newNode
+            new_node.nextNode = actual_node
+            @head = new_node
         end
         return @head.value
     end
 
     # Big O(n) space complexity O(n)
-    def deleteLast
+    def delete_last
         return "Empty linkedset" if @size == 0
 
         counter = 0
-        currentNode = @head
+        current_node = @head
         
         while counter < @size
             if @size - counter == 1
-                decrementSize()
+                decrement_size()
                 
-                currentNode.nextNode = ""
+                current_node.nextNode = ""
         
                 if @size == 0 
-                    currentNode.value = ""
+                    current_node.value = ""
                 end
         
                 return true
             else
                 counter += 1
-                currentNode = currentNode.nextNode
+                current_node = current_node.nextNode
             end
         end
     end
 
       # Big O(n) space complexity O(n)
-      def deleteIn(pos)
+      def delete_in(pos)
         return "Not Found" if @size == 0 || pos > @size
 
         counter = 0
-        currentNode = @head
+        current_node = @head
     
         while counter < pos
             if pos - counter == 1
-                decrementSize()
+                decrement_size()
                 
-                currentNode.nextNode = currentNode.nextNode.nextNode
+                current_node.nextNode = current_node.nextNode.nextNode
         
                 if @size == 0 
-                    currentNode.value = ""
+                    current_node.value = ""
                 end
         
                 return true
             else
                 counter += 1
-                currentNode = currentNode.nextNode
+                current_node = current_node.nextNode
             end
         end
     end
 
     # Big O(1) space complexity O(1)
-    def getFirst
-        currentNode = @head
-        return "Empty linked list" if currentNode.value == ""
-        return currentNode.value
+    def get_first
+        current_node = @head
+        return "Empty linked list" if current_node.value == ""
+        return current_node.value
     end
 
     # Big O(n)
-    def getLast
-        currentNode = @head
+    def get_last
+        current_node = @head
         counter = 0
     
-        return currentNode.value if @size == 1
+        return current_node.value if @size == 1
     
         while counter <= @size
             counter += 1
  
-            return currentNode.value if currentNode.nextNode == ""           
-            currentNode = currentNode.nextNode
+            return current_node.value if current_node.nextNode == ""           
+            current_node = current_node.nextNode
         end
     end
 
     # Big O(1) space complexity O(1)
     def clear
-        newNode = Node.new()
+        new_node = Node.new()
         
-        @head = newNode
+        @head = new_node
         @size = 0
         
         return @head
@@ -106,26 +106,26 @@ class LinkedList
 
     # Big O(n) or Big (n log n)
     def addBack(value)
-        currentNode = @head
+        current_node = @head
         counter = 0
-        newNode = Node.new(value)
+        new_node = Node.new(value)
 
-        if currentNode.nextNode == "" 
-            currentNode.nextNode = newNode
-            return newNode.value
+        if current_node.nextNode == "" 
+            current_node.nextNode = new_node
+            return new_node.value
         end
     
         while counter <= @size
             counter += 1
 
-            if currentNode.nextNode == "" 
-                currentNode.nextNode = newNode
-                return currentNode.nextNode.value
+            if current_node.nextNode == "" 
+                current_node.nextNode = new_node
+                return current_node.nextNode.value
             end
-            currentNode = currentNode.nextNode
+            current_node = current_node.nextNode
         end
 
-        incrementSize()
+        increment_size()
     end
 
     # Big O(1)
@@ -135,23 +135,23 @@ class LinkedList
 
     private
     # Big O(1)
-    def incrementSize
+    def increment_size
         @size += 1
     end
 
-    def decrementSize
+    def decrement_size
         @size -= 1
     end
 end
 
 class Node
     attr_accessor :value, :nextNode
-  
+
     def initialize(value = "", next_node = "")
         @value = value
         @nextNode = next_node
     end
 end
 
-l = LinkedList.new
-l.addFront(2)
+linked_list = LinkedList.new
+linked_list.add_front(2)
