@@ -1,15 +1,23 @@
-# open for extention, closed for modification
-# once in production, you don't change anymore
-# avoiding space explosion (class with infinity lines and methods)
-
-# using Speficiation Pattern as example
-# each new funcionality is a new specification
-
-# we have a class product, and we will need to filter products by specifications
-# so instead of creating each filter inside of a ProductFilter class,
-# or even the Product class
-# we we'll create specifications
-
+# NOTE: open for extention, closed for modification
+#       once in production, you don't change anymore
+#       avoiding space explosion (class with infinity lines and methods)
+# 
+#       using Speficiation Pattern as example
+#       each new filter is a new specification
+# 
+#       we have a class product, and we will need to filter
+#       products by specifications;
+# 
+#       so instead of creating each filter inside of a ProductFilter class,
+#       or even the Product class
+#       we we'll create specifications.
+# 
+#       we have a class called ProductFilter
+#       it receives the Specification and the products to be filtered
+#         
+#       product_filter.specification = your specification (color, size, price, likes, etc)
+#       product_filter.filter
+# 
 require_relative "./product"
 require_relative "./product_color"
 require_relative "./product_size"
