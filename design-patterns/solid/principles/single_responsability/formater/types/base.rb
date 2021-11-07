@@ -20,6 +20,9 @@ module Formater::Types
       @data = data
     end
 
+    # NOTE: if form_data from base is called then an error is raised
+    #       bacause any child of the base must to implement this method
+    # 
     def format_data
       raise Formater::Types::MissingContract.new(data), "method format_data not implemented by type"
     end
