@@ -1,3 +1,6 @@
+# each class should have only one proposal, and nothing more
+# if a class need to have another responsability/proposal, then it should be another class
+# 'if acts like a duck, and quack like a duck, so it's a duck'
 
 require "./page"
 require "./journal"
