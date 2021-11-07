@@ -1,7 +1,20 @@
 # each class should have only one proposal, and nothing more
-# if a class need to have another responsability/proposal, then it should be another class
+# if a class need to have another responsability/proposal,
+# then it should be another class.
+# 
 # 'if acts like a duck, and quack like a duck, so it's a duck'
-
+# 
+# so here we have a journal and page classes,
+# and we want to format it in a several ways
+# 
+# Instead of creating a class called XFormater with all
+# the formater types there as methods,
+# we have a FormaterManager class
+# that received a type (another class) and call the formater method from it.
+# 
+# So if we need to have more formater types,
+# it's just needed to create the new class
+# 
 require "./page"
 require "./journal"
 require "./formater/manager"
