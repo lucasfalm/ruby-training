@@ -6,13 +6,11 @@
 #        API for doing it succinctly"
 
 require "./person"
-require "./person_builder"
-
-person_builder = PersonBuilder.new
 
 # NOTE: be able to create a complex object using comprehensive methods
 # 
-lucas = person_builder.
+lucas = Person.
+          create.
           name("Lucas").
           works.at("Fetchly").
           works.earning(25.00).

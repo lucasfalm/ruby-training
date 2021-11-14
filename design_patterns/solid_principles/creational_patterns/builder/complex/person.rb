@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative "./person_builder"
+
 class Person
 
   attr_accessor :name, :address, :job
@@ -8,6 +10,13 @@ class Person
     @name = name
     @address = address
     @job = job
+  end
+
+  # NOTE: this method is to avoid creating the Person by hand, instead
+  #       the PersonBuilder should be used
+  # 
+  def self.create
+    PersonBuilder.new
   end
 
   def format_string
