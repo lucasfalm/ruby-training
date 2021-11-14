@@ -12,6 +12,8 @@ class HtmlBuilder
   def add_child name:, text: nil
     root.add_child name: name, text: text
 
+    # NOTE: always returning self to be able to chain methods
+    # 
     self
   end
 
