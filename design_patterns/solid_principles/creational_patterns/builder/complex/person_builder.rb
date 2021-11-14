@@ -39,7 +39,7 @@ class PersonBuilder
         country: #{person.address[:country]},
       Works:
         company: #{person.job[:company_name]},
-        salary: #{person.job[:salary]},
+        salary hour: #{person.job[:salary]},
         currency: #{person.job[:currency]},
     HEREDOC
   end
