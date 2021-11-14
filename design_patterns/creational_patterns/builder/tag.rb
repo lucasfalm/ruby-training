@@ -22,6 +22,8 @@ class Tag
     HtmlBuilder.new root_name: name, root_text: text
   end
 
+  # NOTE: this method can be extract to a separated class, that cares just
+  #       about formating as string the HTML. But just for convinience it's defined here
   def format_string identation: DEFAULT_IDENTATION
     html = []
     html << "<#{name}>\n"
