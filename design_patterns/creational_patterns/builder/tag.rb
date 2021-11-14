@@ -29,8 +29,6 @@ class Tag
     html << "<#{name}>\n"
 
     children.each do |child|
-      identation = " " * DEFAULT_IDENTATION
-
       html << format_child(child: child, identation: identation)
     end
 
@@ -44,23 +42,27 @@ class Tag
     self
   end
 
-  def format_child child:, identation: DEFAULT_IDENTATION
+  private
+
+  def format_child child:, identation:
     final_format = []
 
+    identation_space = " " * identation
+
     if child.text.nil? && child.children.empty?
-      final_format << "#{identation}<#{child.name}></#{child.name}>\n"
+      final_format << "#{identation_space}<#{child.name}></#{child.name}>\n"
 
     elsif !child.text.nil? && child.children.empty?
-      final_format << "#{identation}<#{child.name}>#{child.text}</#{child.name}>\n"
+      final_format << "#{identation_space}<#{child.name}>#{child.text}</#{child.name}>\n"
 
     elsif child.text.nil? && !child.children.empty?
-      final_format << "#{identation}<#{child.name}>\n"
+      final_format << "#{identation_space}<#{child.name}>\n"
 
       child.children.each do |sub_child|
         final_format << format_child(child: sub_child, identation: identation * DEFAULT_IDENTATION)
       end
 
-      final_format << "#{identation}</#{child.name}>\n"
+      final_format << "#{identation_space}</#{child.name}>\n"
     end
 
     final_format.flatten
