@@ -24,7 +24,7 @@ lucas = person_builder.
           lives.in_country("Brazil").
           build
 
-puts person_builder.format_string
+puts lucas.format_string
 
 # Person name: Lucas
 # Lives:

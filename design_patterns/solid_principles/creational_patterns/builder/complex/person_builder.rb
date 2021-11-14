@@ -29,18 +29,4 @@ class PersonBuilder
   def works
     PersonJobBuilder.new person: person, person_builder: self
   end
-
-  def format_string
-    <<-"HEREDOC"
-      Person name: #{person.name}
-      Lives:
-        city: #{person.address[:city]},
-        state: #{person.address[:state]},
-        country: #{person.address[:country]},
-      Works:
-        company: #{person.job[:company_name]},
-        salary hour: #{person.job[:salary]},
-        currency: #{person.job[:currency]},
-    HEREDOC
-  end
 end
