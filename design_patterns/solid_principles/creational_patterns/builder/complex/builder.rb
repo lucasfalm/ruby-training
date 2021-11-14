@@ -27,11 +27,11 @@ lucas = person_builder.
 puts person_builder.format_string
 
 # Person name: Lucas
-# Lives in:
+# Lives:
 #   city: Florianopolis,
 #   state: Santa Catarina,
 #   country: Brazil,
-# Works at:
+# Works:
 #   company: Fetchly,
-#   earns: 25.0,
-#   earns in: Dolars
+#   salary hour: 25.00,
+#   currency: Dolars
