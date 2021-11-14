@@ -50,7 +50,7 @@ class Tag
       final_format << "#{identation}<#{child.name}>\n"
 
       child.children.each do |sub_child|
-        final_format << format_child(child: sub_child, identation: identation * 2)
+        final_format << format_child(child: sub_child, identation: identation * DEFAULT_IDENTATION)
       end
 
       final_format << "#{identation}</#{child.name}>\n"

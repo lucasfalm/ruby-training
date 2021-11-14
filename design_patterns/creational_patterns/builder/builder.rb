@@ -20,4 +20,17 @@ html_builder.
   add_child_to(parent_name: "div", name: "p", text: "it can go really deep")
 
 puts html_builder.build.format_string
+# <html>
+#   <header>
+#     <title>Using builder pattern!</title>
+#   </header>
+#   <body>
+#     <p>Hello</p>
+#     <p>World</p>
+#     <div>
+#       <p>it can go really deep</p>
+#     </div>
+#   </body>
+# </html>
+
 puts html_builder.inspect
