@@ -9,9 +9,7 @@ require_relative "./tag"
 
 html_builder = Tag.create name: "html"
 html_builder.
-  add_child(name: "header")
-
-html_builder.
+  add_child(name: "header").
   add_child(name: "body").
   add_child_to(parent_name: "body", name: "p", text: "Hello").
   add_child_to(parent_name: "body", name: "p", text: "World").
