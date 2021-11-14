@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "./person_builder"
-
 class PersonAddressBuilder
 
   attr_accessor :person, :person_builder
@@ -23,6 +21,8 @@ class PersonAddressBuilder
 
     person.address = address
 
+    # NOTE: always returning person_builder to be able to chain methods
+    # 
     person_builder
   end
 
