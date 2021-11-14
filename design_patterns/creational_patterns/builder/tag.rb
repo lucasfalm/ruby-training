@@ -14,6 +14,11 @@ class Tag
   end
 
   def self.create name:, text: nil
+    # NOTE: when using the Builder pattern it's really common to have
+    #       a method to create the builder inside of the class related to it,
+    #       forcing the users to use the builder instead of creating
+    #       the class directly
+    # 
     HtmlBuilder.new root_name: name, root_text: text
   end
 
