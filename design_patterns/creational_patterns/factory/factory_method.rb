@@ -1,4 +1,3 @@
-require "math"
 
 # NOTE: the Factory method design pattern is basically about
 #       methods inside of a class, that are responsible
