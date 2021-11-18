@@ -18,6 +18,8 @@
 #       product_filter.specification = your specification (color, size, price, likes, etc)
 #       product_filter.filter
 # 
+#       another clear example of open closed principle is the Strategy pattern
+# 
 require_relative "./product"
 require_relative "./product_color"
 require_relative "./product_size"
