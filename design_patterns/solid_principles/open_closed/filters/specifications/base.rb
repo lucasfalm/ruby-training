@@ -7,14 +7,14 @@ module Filters::Specifications
     attr_accessor :criteria
   
     def initialize criteria: nil
-      set new_criteria: criteria
+      set criteria: criteria
     end
 
 
     def satisfied?(product); end
 
-    def set new_criteria:
-      @criteria = new_criteria
+    def set criteria:
+      @criteria = criteria
     end
   end
 end

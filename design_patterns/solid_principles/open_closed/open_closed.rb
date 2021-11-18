@@ -85,15 +85,15 @@ or_specification = Filters::Specifications::OrSpecification.new
 #       it means, what I'm looking for
 #       black things? medium size things? both? -> criterias
 # 
-size_specification.set new_criteria: medium_size
-color_specification.set new_criteria: black_color
+size_specification.set criteria: medium_size
+color_specification.set criteria: black_color
 
-and_specification.set new_criteria: [color_specification, size_specification]
-or_specification.set new_criteria: [color_specification, size_specification]
+and_specification.set criteria: [color_specification, size_specification]
+or_specification.set criteria: [color_specification, size_specification]
 
 # NOTE: defining the filter that will be applied to the query
 # 
-product_filter.set new_specification: or_specification
+product_filter.set specification: or_specification
 
 # NOTE: using the filter
 # 

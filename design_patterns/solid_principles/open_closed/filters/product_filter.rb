@@ -7,7 +7,7 @@ module Filters
 
     def initialize products:, specification: nil
       @products = products
-      @specification = specification
+      set specification: specification
     end
 
     def filter
@@ -25,8 +25,8 @@ module Filters
       end
     end
 
-    def set new_specification:
-      @specification = new_specification
+    def set specification:
+      @specification = specification
     end
   end
 end
