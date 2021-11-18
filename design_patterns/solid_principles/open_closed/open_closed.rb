@@ -29,19 +29,22 @@ require_relative "./filters/specifications/size_specification"
 require_relative "./filters/specifications/and_specification"
 require_relative "./filters/specifications/or_specification"
 
-# colors:
+# NOTE: creating colors
+# 
 green_color = ProductColor.new name: ProductColor::NAMES[:green]
 blue_color = ProductColor.new name: ProductColor::NAMES[:blue]
 red_color = ProductColor.new name: ProductColor::NAMES[:red]
 white_color = ProductColor.new name: ProductColor::NAMES[:white]
 black_color = ProductColor.new name: ProductColor::NAMES[:black]
 
-# sizes:
+# NOTE: creating sizes
+# 
 small_size = ProductSize.new name: ProductSize::NAMES[:small]
 medium_size  = ProductSize.new name: ProductSize::NAMES[:medium]
 large_size  = ProductSize.new name: ProductSize::NAMES[:large]
 
-# products:
+# NOTE: creating products, with color and size
+# 
 car = Product.new(
   name: "Car",
   color: green_color,
@@ -66,22 +69,34 @@ notebook = Product.new(
   size: small_size
 )
 
-# filter:
+# NOTE: creating the product filter, that will deal with the specification
+# 
 product_filter = Filters::ProductFilter.new products: [car, house, book, notebook]
 
-# specifications:
+# NOTE: creating specifications
+# 
 color_specification = Filters::Specifications::ColorSpecification.new
 size_specification = Filters::Specifications::SizeSpecification.new
 and_specification = Filters::Specifications::AndSpecification.new
 or_specification = Filters::Specifications::OrSpecification.new
 
-size_specification.criteria = medium_size
-color_specification.criteria = black_color
+# NOTE: setting the 'criteria' for each specification. 
+# 
+#       it means, what I'm looking for
+#       black things? medium size things? both? -> criterias
+# 
+size_specification.set new_criteria: medium_size
+color_specification.set new_criteria: black_color
 
-and_specification.criteria = [color_specification, size_specification]
-or_specification.criteria = [color_specification, size_specification]
+and_specification.set new_criteria: [color_specification, size_specification]
+or_specification.set new_criteria: [color_specification, size_specification]
 
-# filtering by:
-product_filter.specification = or_specification
+# NOTE: defining the filter that will be applied to the query
+# 
+product_filter.set new_specification: or_specification
 
+# NOTE: using the filter
+# 
 puts "filter result: #{product_filter.filter}"
+# filter result:
+# [#<Product:0x000056025053be68 @name="Notebook", @color=#<ProductColor:0x00005602505408a0 @name="black">, @size=#<ProductSize:0x00005602505406e8 @name="small">>]

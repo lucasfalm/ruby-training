@@ -24,5 +24,9 @@ module Filters
         specification.satisfied? product
       end
     end
+
+    def set new_specification:
+      @specification = new_specification
+    end
   end
 end

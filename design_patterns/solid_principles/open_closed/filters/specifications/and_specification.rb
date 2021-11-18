@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
+require_relative "./base"
+
 module Filters::Specifications
 
-  class AndSpecification
-
-    attr_accessor :criteria
+  class AndSpecification < Base
 
     def initialize criteria: []
-      @criteria = criteria
+      super
     end
 
     def satisfied?(product)
