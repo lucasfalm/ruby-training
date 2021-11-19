@@ -5,7 +5,7 @@
 require 'singleton'
 
 class Foobar
-    include Singleton
+	include Singleton
 end
 
 # NOTE: it raises an error
