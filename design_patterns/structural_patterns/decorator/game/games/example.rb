@@ -17,8 +17,6 @@ module Games
     SETTINGS = {}
     VERSION = 1_0_0
 
-    attr_reader :NAME, :SETTINGS, :VERSION
-
     def initialize
       @name = NAME
       @settings = SETTINGS
