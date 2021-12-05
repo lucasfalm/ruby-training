@@ -10,8 +10,9 @@ module Games
     include GameCore::Base
     include GameCore::TriggerSpin
 
-    include Features::StickySymbol # NOTE: this is an example of decorator, adding
-#                                          behavior without changing the class base (game)
+    # NOTE: this is an example of decorator, adding
+#           behavior without changing the class base (game)
+    include Features::StickySymbol 
 
     NAME = "Example Game"
     SETTINGS = {}
