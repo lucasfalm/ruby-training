@@ -3,7 +3,7 @@ def containsDuplicates(a)
     
     pointer = a.count
     current = 0
-    
+
     if a.count == 2 
         return false if a[0] != a[1]
         return true
