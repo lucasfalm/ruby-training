@@ -6,6 +6,7 @@ commom_elements(arrayOne, arrayTwo)
 
 # Big O(n) time and O(n) space
 def commom_elements(arrayOne, arrayTwo)
+
     p1 = 0
     p2 = 0
     commomElements = Array.new()
