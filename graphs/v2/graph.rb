@@ -23,6 +23,36 @@ module V2
       internal_details[:bipartite] = true
     end
 
+    # NOTE: breadth-first search;
+    def bfs(value)
+      visited = []
+      queue   = [nodes.first]
+      result  = nil
+
+      while queue.length > 0
+        dequeued_node = queue.shift
+
+        if visited.include?(dequeued_node.value)
+          next
+        else
+          visited << dequeued_node.value
+        end
+
+        break result = dequeued_node if dequeued_node.value == value
+
+        adjacencies = dequeued_node.list_adjacent_nodes
+        adjacencies.each do |adjacent_node|
+          next if visited.include?(adjacent_node.value)
+
+          break result = adjacent_node if adjacent_node.value == value
+
+          queue << adjacent_node
+        end
+      end
+
+      puts "FOUND NODE: #{result}" unless result.nil?
+    end
+
     def is_bipartite?
       visited = []
 

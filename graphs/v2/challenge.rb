@@ -15,11 +15,17 @@ paul  = V2::Node.new(value: 'paul')
 chris = V2::Node.new(value: 'chris')
 
 jack.connect(brian).connect(emily)
-emily.connect(lucy)
-lucy.connect(david).connect(brian)
+
 brian.connect(chris)
+
+emily.connect(lucy)
+
+lucy.connect(david).connect(brian)
+
 david.connect(jose).connect(chris)
+
 jose.connect(paul)
+
 paul.connect(chris)
 
 nodes << jack << emily << lucy << brian
@@ -27,4 +33,5 @@ nodes << david << jose << paul << chris
 
 jose.connect(chris)
 
-V2::Graph.new(nodes).execute_bipartite_challenge
+# V2::Graph.new(nodes).execute_bipartite_challenge
+V2::Graph.new(nodes).bfs('paul')
