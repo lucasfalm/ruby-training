@@ -22,16 +22,34 @@ emily.connect(lucy)
 
 lucy.connect(david).connect(brian)
 
-david.connect(jose).connect(chris)
+# david.connect(jose).connect(chris)
 
-jose.connect(paul)
+# jose.connect(paul)
 
-paul.connect(chris)
+# paul.connect(chris)
 
-nodes << jack << emily << lucy << brian
-nodes << david << jose << paul << chris
+nodes << jack << emily << lucy << brian << chris
+# nodes << david << jose << paul << chris
 
 jose.connect(chris)
 
-# V2::Graph.new(nodes).execute_bipartite_challenge
-V2::Graph.new(nodes).bfs('paul')
+V2::Graph.new(nodes).bfs(search_value: 'paul')
+
+# a = V2::Node.new(value: 'a')
+# b = V2::Node.new(value: 'b')
+# c = V2::Node.new(value: 'c')
+# d = V2::Node.new(value: 'd')
+# e = V2::Node.new(value: 'e')
+# f = V2::Node.new(value: 'f')
+
+# a.connect(b).connect(c)
+
+# b.connect(d)
+
+# c.connect(e)
+
+# d.connect(f)
+
+# nodes = [a, b, c, d, e, f]
+
+# V2::Graph.new(nodes).bfs(search_value: 'f')

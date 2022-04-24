@@ -24,9 +24,9 @@ module V2
     end
 
     # NOTE: breadth-first search;
-    def bfs(value)
+    def bfs(search_value: , start: nodes.first)
       visited = []
-      queue   = [nodes.first]
+      queue   = [start]
       result  = nil
 
       while queue.length > 0
@@ -38,18 +38,17 @@ module V2
           visited << dequeued_node.value
         end
 
-        break result = dequeued_node if dequeued_node.value == value
+        break result = dequeued_node if dequeued_node.value == search_value
 
         adjacencies = dequeued_node.list_adjacent_nodes
+
         adjacencies.each do |adjacent_node|
           next if visited.include?(adjacent_node.value)
-
-          break result = adjacent_node if adjacent_node.value == value
-
           queue << adjacent_node
         end
       end
 
+      puts "VISITED #{visited}"
       puts "FOUND NODE: #{result}" unless result.nil?
     end
 
