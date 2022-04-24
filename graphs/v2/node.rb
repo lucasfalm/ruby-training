@@ -4,16 +4,18 @@ module V2
   class Node
 
     attr_reader :value
-    attr_accessor :edges_list
+    attr_accessor :edges_list, :color
 
-    def initialize(value)
+    def initialize(value:)
       @value      = value
       @edges_list = []
+      @color      = nil
     end
 
     def connect(node)
       edges_list      << node
-      node.edges_list << node
+      node.edges_list << self
+      self
     end
 
     def list_adjacent_nodes
