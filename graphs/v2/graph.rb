@@ -24,6 +24,11 @@ module V2
     end
 
     # NOTE: breadth-first search;
+    # 
+    #       use a queue (first in, first out) to search,
+    #       it means that we validate always all the adjacencies from
+    #       the start node, to then validate the sub nodes from the adjacencies
+    # 
     def bfs(search_value: , start: nodes.first)
       visited = []
       queue   = [start]
