@@ -1,6 +1,8 @@
-# NOTE: The Decorator design pattern facilitates the addition of 
+# frozen_string_literal: true
+
+# NOTE: The Decorator design pattern facilitates the addition of
 #       behaviors to individual objects without inheriting from them.
-#       
+#
 
 require_relative './game/games/example'
 

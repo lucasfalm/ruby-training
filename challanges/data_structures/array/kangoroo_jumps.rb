@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 # https://www.hackerrank.com/challenges/kangaroo/problem
 
-#!/bin/ruby
+# !/bin/ruby
 
 require 'json'
 require 'stringio'
@@ -17,24 +19,24 @@ require 'stringio'
 #
 
 def kangaroo(x1, v1, x2, v2)
-    # Write your code here
+  # Write your code here
 
-    k1_positions = [x1]
-    k2_positions = [x2]
-    
-    return "NO" if x1 < x2 && v1 < v2
+  k1_positions = [x1]
+  k2_positions = [x2]
 
-    10000.times do
-        k2_new_position = k2_positions.last + v2
-        k1_new_position = k1_positions.last + v1
+  return 'NO' if x1 < x2 && v1 < v2
 
-        return "YES" if k1_new_position == k2_new_position
+  10_000.times do
+    k2_new_position = k2_positions.last + v2
+    k1_new_position = k1_positions.last + v1
 
-        k1_positions << k1_new_position
-        k2_positions << k2_new_position        
-    end
+    return 'YES' if k1_new_position == k2_new_position
 
-    "NO"
+    k1_positions << k1_new_position
+    k2_positions << k2_new_position
+  end
+
+  'NO'
 end
 
 fptr = File.open(ENV['OUTPUT_PATH'], 'w')
@@ -54,4 +56,4 @@ result = kangaroo x1, v1, x2, v2
 fptr.write result
 fptr.write "\n"
 
-fptr.close()
+fptr.close

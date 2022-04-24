@@ -1,15 +1,13 @@
-require_relative "./base"
+# frozen_string_literal: true
 
-module Formater::Types
+require_relative './base'
 
-  class HtmlType < Formater::Types::Base
-
-    def initialize data
-      super
-    end
-
-    def format_data
-      puts "formating data #{data.inspect} as HTML"
+module Formater
+  module Types
+    class HtmlType < Formater::Types::Base
+      def format_data
+        puts "formating data #{data.inspect} as HTML"
+      end
     end
   end
 end

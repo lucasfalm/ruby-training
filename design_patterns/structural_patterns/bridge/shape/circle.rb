@@ -2,16 +2,17 @@
 
 require_relative 'shape'
 
-class Shape::Circle < Shape
+module Shape
+  class Circle < Shape
+    attr_reader :radius
 
-  attr_reader :radius
+    def initialize(rendered: nil, radius: 0)
+      super rendered: rendered
+      @radius = radius
+    end
 
-  def initialize rendered: nil, radius: 0
-    super rendered: rendered
-    @radius = radius
-  end
-
-  def draw
-    rendered.render_circle radius: radius
+    def draw
+      rendered.render_circle radius: radius
+    end
   end
 end

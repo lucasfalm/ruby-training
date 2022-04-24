@@ -1,4 +1,5 @@
 #!/bin/ruby
+# frozen_string_literal: true
 
 require 'json'
 require 'stringio'
@@ -12,26 +13,27 @@ require 'stringio'
 # https://www.hackerrank.com/challenges/grading/problem
 
 def gradingStudents(grades)
-    final_grades = []
+  final_grades = []
 
-    grades.each do |grade|
-        if grade < 38
-            final_grades << grade
-            next
-        end
-
-        digits = grade.to_s.split('')
-        last_digit = (digits.last).to_i
-
-        if (last_digit == 4 || last_digit == 9)
-            final_grades << grade + 1 
-        elsif (last_digit == 3 || last_digit == 8)
-            final_grades << grade + 2
-        else
-            final_grades << grade
-        end
+  grades.each do |grade|
+    if grade < 38
+      final_grades << grade
+      next
     end
-    final_gradess
+
+    digits = grade.to_s.split('')
+    last_digit = digits.last.to_i
+
+    final_grades << case last_digit
+                    when 4, 9
+                      grade + 1
+                    when 3, 8
+                      grade + 2
+                    else
+                      grade
+                    end
+  end
+  final_gradess
 end
 
 fptr = File.open(ENV['OUTPUT_PATH'], 'w')
@@ -41,8 +43,8 @@ grades_count = gets.strip.to_i
 grades = Array.new(grades_count)
 
 grades_count.times do |i|
-    grades_item = gets.strip.to_i
-    grades[i] = grades_item
+  grades_item = gets.strip.to_i
+  grades[i] = grades_item
 end
 
 result = gradingStudents grades
@@ -50,4 +52,4 @@ result = gradingStudents grades
 fptr.write result.join "\n"
 fptr.write "\n"
 
-fptr.close()
+fptr.close

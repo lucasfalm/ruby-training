@@ -1,4 +1,5 @@
 #!/bin/ruby
+# frozen_string_literal: true
 
 require 'json'
 require 'stringio'
@@ -6,28 +7,29 @@ require 'stringio'
 # Complete the findDigits function below.
 # Big O(n) time, and O(n) space complexity
 def findDigits(n)
-    digits = n.to_s.split('')
-    divisions = 0
+  digits = n.to_s.split('')
+  divisions = 0
 
-    digits.each do |digit|
-        next if digit.to_i == 0
-        divisions += 1 if n % digit.to_i == 0
-    end
+  digits.each do |digit|
+    next if digit.to_i.zero?
 
-    divisions
+    divisions += 1 if (n % digit.to_i).zero?
+  end
+
+  divisions
 end
 
 fptr = File.open(ENV['OUTPUT_PATH'], 'w')
 
 t = gets.to_i
 
-t.times do |t_itr|
-    n = gets.to_i
+t.times do |_t_itr|
+  n = gets.to_i
 
-    result = findDigits n
+  result = findDigits n
 
-    fptr.write result
-    fptr.write "\n"
+  fptr.write result
+  fptr.write "\n"
 end
 
-fptr.close()
+fptr.close

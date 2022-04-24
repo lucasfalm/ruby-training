@@ -1,20 +1,20 @@
 # frozen_string_literal: true
 
-require_relative "./base"
+require_relative './base'
 
-module Filters::Specifications
+module Filters
+  module Specifications
+    class AndSpecification < Base
+      def initialize(criteria: [])
+        super
+      end
 
-  class AndSpecification < Base
+      def satisfied?(product)
+        return false if criteria.empty?
 
-    def initialize criteria: []
-      super
-    end
-
-    def satisfied?(product)
-      return false if criteria.empty?
-
-      criteria.all? do |specification|
-        specification.satisfied? product
+        criteria.all? do |specification|
+          specification.satisfied? product
+        end
       end
     end
   end

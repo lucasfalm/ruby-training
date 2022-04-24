@@ -1,8 +1,7 @@
+# frozen_string_literal: true
 
 module Formater
-
   class InvalidDataError < StandardError
-
     attr_accessor :message
 
     def initialize(data, context)
@@ -19,17 +18,16 @@ module Formater
   end
 
   class Base
-
     attr_accessor :type, :data
-  
-    def initialize type:, data:
+
+    def initialize(type:, data:)
       @type = type
       @data = data
     end
 
     protected
 
-    def validate_data! context: {}
+    def validate_data!(context: {})
       raise Formater::InvalidDataError.new(data, context) unless valid_data?
     end
 

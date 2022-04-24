@@ -2,16 +2,17 @@
 
 require_relative 'shape'
 
-class Shape::Square < Shape
+module Shape
+  class Square < Shape
+    attr_reader :width
 
-  attr_reader :width
+    def initialize(rendered: nil, width: 0)
+      super rendered: rendered
+      @width = width
+    end
 
-  def initialize rendered: nil, width: 0
-    super rendered: rendered
-    @width = width
-  end
-
-  def draw
-    rendered.render_square width: width
+    def draw
+      rendered.render_square width: width
+    end
   end
 end

@@ -6,17 +6,16 @@ require_relative '../features/sticky_symbol'
 
 module Games
   class Example
-
     include GameCore::Base
     include GameCore::TriggerSpin
 
     # NOTE: this is an example of decorator, adding
     #       behavior without changing the class base (game)
-    include Features::StickySymbol 
+    include Features::StickySymbol
 
-    NAME = "Example Game"
-    SETTINGS = {}
-    VERSION = 1_0_0
+    NAME = 'Example Game'
+    SETTINGS = {}.freeze
+    VERSION = 100
 
     def initialize
       @name = NAME
@@ -25,7 +24,7 @@ module Games
     end
 
     def game_modes
-      %i(easy medium extreme)
+      %i[easy medium extreme]
     end
 
     def name

@@ -1,6 +1,9 @@
+# frozen_string_literal: true
+
 class Node
   attr_reader :data, :children
   attr_accessor :term
+
   def initialize(data)
     @data = data
     @children = []
@@ -34,6 +37,7 @@ end
 
 class Trie
   attr_reader :root
+
   def initialize
     @root = Node.new(nil)
   end
@@ -51,9 +55,10 @@ class Trie
     node = @root
     word.size.times do |i|
       return false unless node.have?(word[i])
+
       node = node.get(word[i])
     end
 
-    return node.term == true
+    node.term == true
   end
 end

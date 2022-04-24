@@ -1,14 +1,13 @@
 # frozen_string_literal: true
 
-require "./person"
-require "./person_address_builder"
-require "./person_job_builder"
+require './person'
+require './person_address_builder'
+require './person_job_builder'
 
 class PersonBuilder
-
   attr_accessor :person
 
-  def initialize person = Person.new
+  def initialize(person = Person.new)
     @person = person
   end
 
@@ -16,7 +15,7 @@ class PersonBuilder
     person
   end
 
-  def name name
+  def name(name)
     person.name = name
 
     self

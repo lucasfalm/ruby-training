@@ -2,8 +2,7 @@
 
 module GameCore
   module TriggerSpin
-
-    def next_round last_round: nil, settings: {}
+    def next_round(last_round: nil, settings: {})
       super last_round: last_round,
             settings: settings
 

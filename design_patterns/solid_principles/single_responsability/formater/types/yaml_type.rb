@@ -1,15 +1,13 @@
-require_relative "./base"
+# frozen_string_literal: true
 
-module Formater::Types
+require_relative './base'
 
-  class YamlType < Formater::Types::Base
-
-    def initialize data
-      super
-    end
-
-    def format_data
-      puts "formating data #{data.inspect} as YAML"
+module Formater
+  module Types
+    class YamlType < Formater::Types::Base
+      def format_data
+        puts "formating data #{data.inspect} as YAML"
+      end
     end
   end
 end

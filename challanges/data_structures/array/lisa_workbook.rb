@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 # https://www.hackerrank.com/challenges/lisa-workbook/problem
-#!/bin/ruby
+# !/bin/ruby
 
 require 'json'
 require 'stringio'
@@ -16,40 +18,39 @@ require 'stringio'
 
 # 5 3         n = 5, k = 3
 # 4 2 6 1 10  arr = [4, 2, 6, 1, 10]
-def workbook(n, k, arr)
-    max_per_page = k
-    problems_per_chapter = arr
+def workbook(_n, k, arr)
+  max_per_page = k
+  problems_per_chapter = arr
 
-    final_book = []
-    problems_per_chapter.each do |chapter_problem_count|
+  final_book = []
+  problems_per_chapter.each do |chapter_problem_count|
+    page_problems = []
+    last_problem = 0
 
+    chapter_problem_count.times do
+      if page_problems.size >= max_per_page
+        final_book << page_problems
         page_problems = []
-        last_problem = 0
+      end
 
-        chapter_problem_count.times do
-            if page_problems.size >= max_per_page
-                final_book << page_problems
-                page_problems = []
-            end
+      last_problem += 1
+      page_problems << last_problem
 
-            last_problem += 1
-            page_problems << last_problem
+      next unless last_problem == chapter_problem_count
 
-            if last_problem == chapter_problem_count
-                final_book << page_problems
+      final_book << page_problems
 
-                page_problems = []
-                last_problem = 0
-            end
-        end
+      page_problems = []
+      last_problem = 0
     end
-    
-    result = []
-    final_book.each_with_index do |book_page, index|
-        result << book_page.include?(index)
-    end
-    
-    result.count(true)
+  end
+
+  result = []
+  final_book.each_with_index do |book_page, index|
+    result << book_page.include?(index)
+  end
+
+  result.count(true)
 end
 
 fptr = File.open(ENV['OUTPUT_PATH'], 'w')
@@ -67,5 +68,4 @@ result = workbook n, k, arr
 fptr.write result
 fptr.write "\n"
 
-fptr.close()
-
+fptr.close

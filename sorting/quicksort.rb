@@ -1,19 +1,18 @@
+# frozen_string_literal: true
+
 class QuickSort
-    def sort(array)
+  def sort(array)
+    quickSort(array, 0, array.length - 1)
 
-        quickSort(array, 0, array.length - 1)
+    array
+  end
 
-        return array
-    end
+  def quickSort(_array, left, right)
+    return if left >= right
 
-    def quickSort(array, left, right)
-        return if (left >= right)
-        
-        pivot = arra[(left + right) / 2]
-    end
+    pivot = arra[(left + right) / 2]
+  end
 end
 
 class Node
-
-
 end

@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
-module Shape::Rendered
+module Shape
+  module Rendered
+    class Vector
+      def render_circle(radius:)
+        puts "rendering circle as vector with radius of #{radius}"
+      end
 
-  class Vector
-
-    def render_circle radius:
-      puts "rendering circle as vector with radius of #{radius}"
-    end
-
-    def render_square width:
-      puts "rendering square as vector with width of #{width}"
+      def render_square(width:)
+        puts "rendering square as vector with width of #{width}"
+      end
     end
   end
 end

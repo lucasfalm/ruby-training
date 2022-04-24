@@ -1,4 +1,5 @@
 #!/bin/ruby
+# frozen_string_literal: true
 
 require 'json'
 require 'stringio'
@@ -13,21 +14,21 @@ require 'stringio'
 # https://www.hackerrank.com/challenges/birthday-cake-candles/problem
 # Big O(n) time, and O(n) space complexity
 def birthdayCakeCandles(candles)
-   rank = Hash.new
-   highest = 0 
-   highest_value = 0
+  rank = {}
+  highest = 0
+  highest_value = 0
 
-   candles.each do |number|
-    rank[number] = 0 if !rank[number]
+  candles.each do |number|
+    rank[number] = 0 unless rank[number]
     rank[number] += 1
-    
-    if rank[number] >= highest_value
-        highest = number
-        highest_value = rank[number]
-    end
-   end
 
-   rank[highest]
+    if rank[number] >= highest_value
+      highest = number
+      highest_value = rank[number]
+    end
+  end
+
+  rank[highest]
 end
 
 fptr = File.open(ENV['OUTPUT_PATH'], 'w')
@@ -41,4 +42,4 @@ result = birthdayCakeCandles candles
 fptr.write result
 fptr.write "\n"
 
-fptr.close()
+fptr.close

@@ -1,24 +1,22 @@
+# frozen_string_literal: true
+
 require 'json'
 require 'stringio'
 
 # https://www.hackerrank.com/challenges/the-hurdle-race/problem
 # Complete the hurdleRace function below.
 def hurdleRace(k, height)
-    max_height = 0
+  max_height = 0
 
-    height.each do |h|
-        actual_height = h.to_i
-    
-        if actual_height > max_height
-            max_height = actual_height
-        end
-   end
-   
-   if max_height > k
-        return max_height - k 
-   end
+  height.each do |h|
+    actual_height = h.to_i
 
-   return 0
+    max_height = actual_height if actual_height > max_height
+  end
+
+  return max_height - k if max_height > k
+
+  0
 end
 
 fptr = File.open(ENV['OUTPUT_PATH'], 'w')
@@ -36,4 +34,4 @@ result = hurdleRace k, height
 fptr.write result
 fptr.write "\n"
 
-fptr.close()
+fptr.close

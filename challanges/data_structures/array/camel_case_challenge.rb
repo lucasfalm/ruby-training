@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 # https://www.hackerrank.com/challenges/camelcase/problem
-#!/bin/ruby
+# !/bin/ruby
 
 require 'json'
 require 'stringio'
@@ -12,24 +14,22 @@ require 'stringio'
 #
 
 def camelcase(s)
-    words = []
-    # Write your code here
-    
-    s.split("").each do |letter|
-        if letter == letter.upcase
-            words << letter            
-        else
-            if words.last
-                last_word = words.last
-                last_word += letter
-                words[words.size - 1] = last_word
-            else
-                words << letter
-            end
-        end
+  words = []
+  # Write your code here
+
+  s.split('').each do |letter|
+    if letter == letter.upcase
+      words << letter
+    elsif words.last
+      last_word = words.last
+      last_word += letter
+      words[words.size - 1] = last_word
+    else
+      words << letter
     end
-    
-    words.size
+  end
+
+  words.size
 end
 
 fptr = File.open(ENV['OUTPUT_PATH'], 'w')
@@ -41,5 +41,4 @@ result = camelcase s
 fptr.write result
 fptr.write "\n"
 
-fptr.close()
-
+fptr.close

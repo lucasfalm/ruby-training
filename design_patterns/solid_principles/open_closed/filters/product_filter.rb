@@ -2,10 +2,9 @@
 
 module Filters
   class ProductFilter
-
     attr_accessor :products, :specification
 
-    def initialize products:, specification: nil
+    def initialize(products:, specification: nil)
       @products = products
       set specification: specification
     end
@@ -17,15 +16,15 @@ module Filters
       #       how many specifications are defined, they just need to
       #       satisfy the contract/specification, that is implement
       #       the 'satisfied?' instance method.
-      # 
+      #
       #       a perfect example of Open Closed principle
-      # 
+      #
       products.filter do |product|
         specification.satisfied? product
       end
     end
 
-    def set specification:
+    def set(specification:)
       @specification = specification
     end
   end

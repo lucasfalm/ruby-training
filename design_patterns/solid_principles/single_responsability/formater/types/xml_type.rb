@@ -1,15 +1,13 @@
-require_relative "./base"
+# frozen_string_literal: true
 
-module Formater::Types
+require_relative './base'
 
-  class XmlType < Formater::Types::Base
-
-    def initialize data
-      super
-    end
-
-    def format_data
-      puts "formating data #{data.inspect} as XML"
+module Formater
+  module Types
+    class XmlType < Formater::Types::Base
+      def format_data
+        puts "formating data #{data.inspect} as XML"
+      end
     end
   end
 end

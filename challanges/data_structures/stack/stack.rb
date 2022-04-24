@@ -1,77 +1,78 @@
+# frozen_string_literal: true
+
 class Stack
-    attr_accessor :head, :size
+  attr_accessor :head, :size
 
-    def initialize(value = "")
-        @head = Node.new(value)
-        @size = 0
+  def initialize(value = '')
+    @head = Node.new(value)
+    @size = 0
+  end
+
+  # Big O(1)
+  def push(data)
+    incrementSize
+
+    actualNode = @head
+    newNode = Node.new(data)
+
+    if actualNode == '' || actualNode.value == ''
+    else
+      newNode.nextNode = actualNode
     end
+    @head = newNode
+    @head.value
+  end
 
-    # Big O(1)
-    def push(data)
-        incrementSize()
-        
-        actualNode = @head
-        newNode = Node.new(data)
+  # Big O(1)
+  def pop
+    decrementSize
+    currentNode = @head
+    return 'Empty linked list' if currentNode == ''
 
-        if actualNode == ""  || actualNode.value == ""
-            @head = newNode
-        else
-            newNode.nextNode = actualNode
-            @head = newNode
-        end
-        return @head.value
-    end
+    @head = currentNode.nextNode
+    currentNode.value
+  end
 
-    # Big O(1)
-    def pop
-        decrementSize()
-        currentNode = @head
-        return "Empty linked list" if currentNode == ""
+  # Big O(1)
+  def peek
+    currentNode = @head
+    return 'Empty linked list' if currentNode == ''
 
-        @head = currentNode.nextNode
-        return currentNode.value
-    end
+    currentNode.value
+  end
 
-    # Big O(1)
-    def peek
-        currentNode = @head
-        return "Empty linked list" if currentNode == ""
-        return currentNode.value
-    end
+  # Big O(1)
+  def clear
+    newNode = Node.new
 
-    # Big O(1)
-    def clear
-        newNode = Node.new()
-        
-        @head = newNode
-        @size = 0
-        
-        return @head
-    end
+    @head = newNode
+    @size = 0
 
-    # Big O(1)
-    def size
-        return @size
-    end
+    @head
+  end
 
-    private
-    # Big O(1)
-    def incrementSize
-        @size += 1
-    end
+  # Big O(1)
+  attr_reader :size
 
-    def decrementSize
-        @size -= 1
-    end
+  private
+
+  # Big O(1)
+  def incrementSize
+    @size += 1
+  end
+
+  def decrementSize
+    @size -= 1
+  end
 end
 
 class Node
-    attr_accessor :value, :nextNode
-  
-    def initialize(value = "", next_node = "")
-        @value = value
-        @nextNode = next_node
-    end
+  attr_accessor :value, :nextNode
+
+  def initialize(value = '', next_node = '')
+    @value = value
+    @nextNode = next_node
+  end
 end
 
 stack = Stack.new

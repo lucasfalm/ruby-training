@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 # https://www.hackerrank.com/challenges/strange-code/problem
-#!/bin/ruby
+# !/bin/ruby
 
 require 'json'
 require 'stringio'
@@ -12,49 +14,47 @@ require 'stringio'
 #
 
 def strangeCounter(t)
-    # Write your code here
-    
-    timer = [3, 2, 1]
-    
-    return timer[t - 1] if t <= timer.size
+  # Write your code here
 
-    steps_tracker = 0
-    index_tracker = 0
+  timer = [3, 2, 1]
 
-    current_first_value = 3
+  return timer[t - 1] if t <= timer.size
 
-    timers = [timer]
+  steps_tracker = 0
+  index_tracker = 0
 
-    while(steps_tracker <= t || index_tracker <= t) do
-        new_current_first_value = current_first_value * 2
-        new_timer = Array.new(new_current_first_value) { |i| i + 1 }.reverse
+  current_first_value = 3
 
-        timers << new_timer
+  timers = [timer]
 
-        steps_tracker += timer.size
-        index_tracker += timer.size
+  while steps_tracker <= t || index_tracker <= t
+    new_current_first_value = current_first_value * 2
+    new_timer = Array.new(new_current_first_value) { |i| i + 1 }.reverse
 
-        timer = new_timer
-        current_first_value = new_current_first_value
-    end
+    timers << new_timer
 
-    searched_timer = timers.find { |sub_timer| sub_timer.include?(t) }
-    i = timers.find_index(searched_timer)
-    sum_steps = timers.take(i + 1).map { |sub_timer| sub_timer.size }.sum
+    steps_tracker += timer.size
+    index_tracker += timer.size
 
-    by_step = searched_timer.find_index(t) + sum_steps + 1
-    
-    by_index = timers.flatten.find_index(t) + 1
-    
+    timer = new_timer
+    current_first_value = new_current_first_value
+  end
 
-    if by_step % by_index == 0
-        by_index
-    else
-        print timers.flatten
-        timers.flatten[t - 1]
-    end
+  searched_timer = timers.find { |sub_timer| sub_timer.include?(t) }
+  i = timers.find_index(searched_timer)
+  sum_steps = timers.take(i + 1).map(&:size).sum
+
+  by_step = searched_timer.find_index(t) + sum_steps + 1
+
+  by_index = timers.flatten.find_index(t) + 1
+
+  if (by_step % by_index).zero?
+    by_index
+  else
+    print timers.flatten
+    timers.flatten[t - 1]
+  end
 end
-
 
 fptr = File.open(ENV['OUTPUT_PATH'], 'w')
 
@@ -65,5 +65,4 @@ result = strangeCounter t
 fptr.write result
 fptr.write "\n"
 
-fptr.close()
-
+fptr.close
