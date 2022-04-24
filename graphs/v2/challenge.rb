@@ -25,8 +25,6 @@ paul.connect(chris)
 nodes << jack << emily << lucy << brian
 nodes << david << jose << paul << chris
 
-V2::Graph.new(nodes).execute
+jose.connect(chris)
 
-# jose.connect(chris)
-
-# V2::Graph.new(nodes).execute
+V2::Graph.new(nodes).execute_bipartite_challenge

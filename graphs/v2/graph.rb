@@ -8,26 +8,34 @@ module V2
     attr_accessor :nodes
 
     def initialize(nodes)
-      @nodes        = nodes
-      @is_bipartite = true
+      @nodes            = nodes
+      @internal_details = {
+        bipartite: true
+      }
+
     end
 
     def add(node)
       nodes << node
+
       node.connect(self)
+
+      internal_details[:bipartite] = true
     end
 
     def is_bipartite?
       visited = []
 
       nodes.each do |node|
-        assign_legal_coloring(node, visited) if !visited.include?(node) || !is_bipartite
+        assign_legal_coloring(node, visited) if !visited.include?(node) && internal_details[:bipartite]
+
+        break if !internal_details[:bipartite]
       end
 
-      is_bipartite
+      internal_details[:bipartite]
     end
 
-    def execute
+    def execute_bipartite_challenge
       if is_bipartite?
         red  = nodes.select { |node| node.color == 'red' }.map(&:value)
         blue = nodes.select { |node| node.color == 'blue' }.map(&:value)
@@ -45,7 +53,7 @@ module V2
 
     private
 
-    attr_accessor :is_bipartite
+    attr_accessor :internal_details
 
     def assign_legal_coloring(start_node, visited)
       # NOTE: commented because this is not a normal DFS
@@ -56,13 +64,17 @@ module V2
 
       visited << start_node
 
+      if start_node.color.nil?
+        start_node.color = 'red'
+      end
+
       start_node.list_adjacent_nodes.each do |adjacent_node|
         if can_assign_legal_color?(adjacent_node, visited)
           adjacent_node.color = start_node.color == 'red' ? 'blue' : 'red'
 
           assign_legal_coloring(adjacent_node, visited)
         else
-          break @is_bipartite = false if adjacent_node.color == start_node.color 
+          break internal_details[:bipartite] = false if adjacent_node.color == start_node.color 
         end
       end
     end
