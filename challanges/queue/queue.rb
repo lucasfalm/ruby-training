@@ -12,11 +12,11 @@ class Queue
   # Out << [2, 1] << new value
   # Big O(1)
   def enqueue(data)
-    newNode = Node.new(data)
+    new_node = Node.new(data)
 
-    @tail.nextNode = newNode if @size >= 1
+    @tail.next_node = new_node if @size >= 1
 
-    @tail = newNode
+    @tail = new_node
 
     @head = @tail if @size.zero?
 
@@ -28,32 +28,32 @@ class Queue
   def dequeue
     return 'Empty Queue' if @size.zero?
 
-    currentNode = @head
+    current_node = @head
 
     if @size == 1
       @head = Node.new('')
       @tail = @head
     else
-      @head = currentNode.nextNode
+      @head = current_node.next_node
     end
 
-    decrementSize
-    currentNode.value
+    decrement_size
+    current_node.value
   end
 
   # Big O(1)
   def peek
     return 'Empty Queue' if @size.zero?
 
-    currentNode = @head
-    currentNode.value
+    current_node = @head
+    current_node.value
   end
 
   # Big O(1)
   def clear
-    newNode = Node.new
+    new_node = Node.new
 
-    @head = newNode
+    @head = new_node
     @size = 0
 
     @head
@@ -65,21 +65,21 @@ class Queue
   private
 
   # Big O(1)
-  def incrementSize
+  def increment_size
     @size += 1
   end
 
-  def decrementSize
+  def decrement_size
     @size -= 1
   end
 end
 
 class Node
-  attr_accessor :value, :nextNode
+  attr_accessor :value, :next_node
 
   def initialize(value = '', next_node = '')
     @value = value
-    @nextNode = next_node
+    @next_node = next_node
   end
 end
 

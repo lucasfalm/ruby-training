@@ -10,26 +10,26 @@ class Stack
 
   # Big O(1)
   def push(data)
-    incrementSize
+    increment_size
 
-    actualNode = @head
-    newNode = Node.new(data)
+    actual_node = @head
+    new_node = Node.new(data)
 
-    if actualNode == '' || actualNode.value == ''
+    if actual_node == '' || actual_node.value == ''
     else
-      newNode.nextNode = actualNode
+      new_node.next_node = actual_node
     end
-    @head = newNode
+    @head = new_node
     @head.value
   end
 
   # Big O(1)
   def pop
-    decrementSize
+    decrement_size
     currentNode = @head
     return 'Empty linked list' if currentNode == ''
 
-    @head = currentNode.nextNode
+    @head = currentNode.next_node
     currentNode.value
   end
 
@@ -43,9 +43,9 @@ class Stack
 
   # Big O(1)
   def clear
-    newNode = Node.new
+    new_node = Node.new
 
-    @head = newNode
+    @head = new_node
     @size = 0
 
     @head
@@ -57,21 +57,21 @@ class Stack
   private
 
   # Big O(1)
-  def incrementSize
+  def increment_size
     @size += 1
   end
 
-  def decrementSize
+  def decrement_size
     @size -= 1
   end
 end
 
 class Node
-  attr_accessor :value, :nextNode
+  attr_accessor :value, :next_node
 
   def initialize(value = '', next_node = '')
     @value = value
-    @nextNode = next_node
+    @next_node = next_node
   end
 end
 
