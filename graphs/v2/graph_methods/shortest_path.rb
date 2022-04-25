@@ -12,7 +12,7 @@ module V2
         current_distance  = 0
 
         while stack.size > 0
-          puts "dequeuing from stack -> #{stack.map(&:value)}"
+          puts "poping from stack -> #{stack.map(&:value)}"
 
           current_node = stack.pop
 
