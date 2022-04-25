@@ -57,6 +57,10 @@ module V2
       puts "FOUND NODE: #{result}" unless result.nil?
     end
 
+    # NOTE: a bipartite graph is a graph where the number of
+    #       nodes can be splited equally by two by color.
+    #       the two sets are nodes not connected to nodes of the same color.
+    #       
     def is_bipartite?
       visited = []
 
