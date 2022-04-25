@@ -69,20 +69,20 @@ mg  = V2::Node.new(value: 'mg', undirected: false)
 bh  = V2::Node.new(value: 'bh', undirected: false)
 pr  = V2::Node.new(value: 'pr', undirected: false)
 
-flp.connect(sp)
+# flp.connect(sp)
 
-sp.connect(rj)
+# sp.connect(rj)
 
-mg.connect(sp)
+# mg.connect(sp)
 
-rj.connect(mg)
+# rj.connect(mg)
 
-bh.connect(pr)
+# bh.connect(pr)
 
-nodes = [flp, sp, mg, rj, bh, pr]
+# nodes = [flp, sp, mg, rj, bh, pr]
 
-graph = V2::Graph.new(nodes)
-graph.print
+# graph = V2::Graph.new(nodes)
+# graph.print
 
 # graph.bfs(start: flp, destination: rj)
 # graph.bfs(start: rj, destination: flp)
@@ -92,4 +92,24 @@ graph.print
 # graph.is_bipartite?
 
 # graph.connected_components_count
-graph.largest_connected_component
+# graph.largest_connected_component
+
+# ####################################################### #
+
+w = V2::Node.new(value: 'w', undirected: true)
+x = V2::Node.new(value: 'x', undirected: true)
+y = V2::Node.new(value: 'y', undirected: true)
+z = V2::Node.new(value: 'z', undirected: true)
+v = V2::Node.new(value: 'v', undirected: true)
+
+w.connect(x).connect(v)
+v.connect(z)
+x.connect(y)
+y.connect(z)
+
+nodes = [w, x, y, z, v]
+
+graph = V2::Graph.new(nodes)
+
+# graph.print
+graph.shortest_path(start_node: w, destination: z)

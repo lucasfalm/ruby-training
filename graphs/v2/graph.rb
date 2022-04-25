@@ -145,6 +145,48 @@ module V2
       puts "-> LARGEST COMPONENT GROUP: #{largest.map(&:value)}"
     end
 
+    # NOTE: DFS solution;
+    # 
+    def shortest_path(start_node:, destination:)
+      stack             = [start_node]
+      visited           = []
+      distances         = []
+      current_distance  = 0
+
+      while stack.size > 0
+        puts "dequeuing from stack -> #{stack.map(&:value)}"
+
+        current_node = stack.pop
+
+        next if visited.include?(current_node.value)
+
+        puts "visiting node -> #{current_node.value}"
+        current_distance += 1 unless current_node === start_node
+        visited          << current_node.value
+
+        puts "current distance -> #{current_distance}"
+        puts "current visited -> #{visited}"
+
+        if current_node.value == destination.value
+          puts "destination found! current distance -> #{current_distance}"
+          distances        << current_distance
+          current_distance = 0
+          visited.delete(destination.value)
+          next
+        end
+
+        current_node.list_adjacent_nodes.each do |adjacent_node|
+          stack << adjacent_node if !visited.include?(adjacent_node.value)
+        end
+      end
+
+      shortest_distance = distances.min
+      puts "\ndistances calculated -> #{distances}"
+      puts "shortest distance -> #{shortest_distance}"
+
+      shortest_distance
+    end
+
     # NOTE: a bipartite graph is a graph where the number of
     #       nodes can be splited equally by two by color.
     #       the two sets are nodes not connected to nodes of the same color.
