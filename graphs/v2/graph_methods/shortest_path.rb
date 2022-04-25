@@ -69,6 +69,9 @@ module V2
 
             shortest_distance = current_distance
 
+            # NOTE: first time updating shortest distance is the shortest
+            #       because we're using BFS algorithm, don't need to search anymore;
+            # 
             break
           end
 
@@ -76,7 +79,6 @@ module V2
           puts "current visited -> #{visited}"
 
           current_node.list_adjacent_nodes.each do |adjacent_node|
-            # next if visited.include?(adjacent_node.value)
             queue << [adjacent_node, current_distance + 1]
           end
         end
