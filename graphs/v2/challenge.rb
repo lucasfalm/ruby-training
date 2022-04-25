@@ -112,4 +112,5 @@ nodes = [w, x, y, z, v]
 graph = V2::Graph.new(nodes)
 
 # graph.print
-graph.shortest_path(start_node: w, destination: z)
+graph.shortest_path_bfs(start_node: w, destination: z)
+graph.bfs(start_node: w, destination: z)
