@@ -35,9 +35,9 @@ end
 # NOTE: BFS algorithm;
 # 
 def explore_around(start_position:, already_visited:, grid:, blank_symbol:)
-  grid_position         = start_position.first(2)
-  stack                 = [grid_position]
-  connected_pieces      = []
+  grid_position    = start_position.first(2)
+  stack            = [grid_position]
+  connected_pieces = []
 
   while(stack.size > 0)
     current_position = stack.pop
@@ -46,8 +46,8 @@ def explore_around(start_position:, already_visited:, grid:, blank_symbol:)
 
     already_visited << current_position
 
-    i, j             = current_position
-    current_row      = grid[i]
+    i, j        = current_position
+    current_row = grid[i]
 
     next if current_row.nil?
 
@@ -73,31 +73,30 @@ def move_one!(i:, j:, stack:, already_visited:)
   # NOTE: up, down, left, right;
   # 
   [0, 1, 2, 3].each do |position_counter|
-    case position_counter
-    when 0
-      new_j        = j + 1
-      new_position = [i, new_j]
+    position = case position_counter
+      when 0
+        new_j        = j + 1
+        new_position = [i, new_j]
+        new_position
+      when 1
+        new_j = j - 1
+        next unless new_j.positive?
 
-      stack << new_position unless already_visited.include?(new_position)
-    when 1
-      new_j        = j - 1
-      next unless new_j.positive?
+        new_position = [i, new_j]
+        new_position
+      when 2
+        new_i        = i + 1
+        new_position = [new_i, j]
+        new_position
+      when 3
+        new_i = i - 1
+        next unless new_i.positive?
 
-      new_position = [i, new_j]
+        new_position = [new_i, j]
+        new_position
+      end
 
-      stack << new_position unless already_visited.include?(new_position)
-    when 2
-      new_i        = i + 1
-      new_position = [new_i, j]
-
-      stack << new_position unless already_visited.include?(new_position)
-    when 3
-      new_i        = i - 1
-      next unless new_i.positive?
-
-      new_position = [new_i, j]
-      stack << new_position unless already_visited.include?(new_position)
-    end
+    stack << position unless already_visited.include?(position)
   end
 end
 
