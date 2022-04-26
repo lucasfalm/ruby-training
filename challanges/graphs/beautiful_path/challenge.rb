@@ -56,7 +56,7 @@ def beautiful_path(edges, from, to)
     )
   end
 
-  # NOTE: BFS algorithm;
+  # NOTE: DFS algorithm;
   # 
   visited     = []
   stack       = [[nodes[from].value, 0]]
