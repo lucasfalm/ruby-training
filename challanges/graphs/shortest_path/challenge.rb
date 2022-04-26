@@ -48,7 +48,7 @@ def bfs(n, m, edges, s)
     nodes[node_value] = Node.new(value: node_value)
   end
 
-  edges.each.with_index do |edge, counter|
+  edges.each do |edge|
     first_node_value, second_node_value = edge
     first_node                          = nodes[first_node_value]
     second_node                         = nodes[second_node_value]
@@ -58,10 +58,10 @@ def bfs(n, m, edges, s)
   visited    = []
   start_node = nodes[s]
   queue      = [[start_node.value, 0]]
-  distances  = [-1] * (nodes.size - 1)
+  distances  = [-1] * (nodes.size) # NOTE: populate distances with -1;
   edge_unit  = 6
 
-  while queue.size > 0        
+  while queue.size.positive?        
     dequeued_value, current_edge_unit = queue.shift  
 
     next if visited.include?(dequeued_value)
@@ -70,19 +70,23 @@ def bfs(n, m, edges, s)
 
     if dequeued_value < start_node.value
       distances[dequeued_value - 1] = current_edge_unit if current_edge_unit != 0
-      distances.delete_at(n - 1) if current_edge_unit == 0
+
+      distances.delete_at(start_node.value - 1) if current_edge_unit == 0
     else
       distances[dequeued_value - 2] = current_edge_unit if current_edge_unit != 0
+
+      distances.delete_at(start_node.value - 2) if current_edge_unit == 0
     end
 
     nodes[dequeued_value].list_adjacent_nodes.each do |adjacent_node_value|
+      next if visited.include?(adjacent_node_value)
+
       edge_distance = current_edge_unit + edge_unit
-      queue << [adjacent_node_value, edge_distance] if !visited.include?(adjacent_node_value)
+      queue        << [adjacent_node_value, edge_distance] 
     end
   end
 
-  # distances.pop
-  print distances
+  distances
 end
 
 n     = 70
