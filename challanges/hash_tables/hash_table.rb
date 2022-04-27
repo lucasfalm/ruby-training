@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
 class HashTable
-  def initialize(arraySize = 16)
-    @INITIAL_SIZE = arraySize
-    @data = []
+  def initialize(array_size = 16)
+    @initial_size = array_size
+    @data         = []
   end
 
   # Big O(1) or O(N)
   def put(key, value)
-    index = getIndex(key)
+    index = get_index(key)
 
     entry = HashEntry.new(key, value)
 
@@ -17,21 +17,21 @@ class HashTable
     else
       entries = @data[index]
 
-      entries = entries.nextEntry until entries.nextEntry.nil?
+      entries = entries.next_entry until entries.next_entry.nil?
 
-      entries.nextEntry = entry
+      entries.next_entry = entry
     end
   end
 
   # Big O(1) or O(N)
   def get(key)
-    index = getIndex(key)
+    index = get_index(key)
     entries = @data[index]
 
     unless entries.nil?
 
       # avoid collisions with linked list
-      entries = entries.nextEntry while entries.key != key && !entries.nextEntry.nil?
+      entries = entries.next_entry while entries.key != key && !entries.next_entry.nil?
 
       return entries.value
     end
@@ -42,18 +42,17 @@ class HashTable
   private
 
   # Big O(1)
-  def getIndex(key)
-    key.to_s.chars.inject(0) { |sum, ch| sum + ch.ord } % @INITIAL_SIZE
-  end
+def get_index(key)
+  key.to_s.chars.inject(0) { |sum, ch| sum + ch.ord } % @initial_size
 end
 
 class HashEntry
-  attr_accessor :key, :value, :nextEntry
+  attr_accessor :key, :value, :next_entry
 
-  def initialize(key, value, nextEntry = nil)
-    @key = key
-    @value = value
-    @nextEntry = nextEntry
+  def initialize(key, value, next_entry = nil)
+    @key        = key
+    @value      = value
+    @next_entry = next_entry
   end
 end
 

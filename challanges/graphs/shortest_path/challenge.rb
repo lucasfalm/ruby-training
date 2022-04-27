@@ -22,7 +22,7 @@ class Node
     @undirected = undirected
     @edges_list = []
   end
-  
+
   def connect(node)
     return self if edges_list.include?(node.value)
 
