@@ -110,6 +110,87 @@ def get_cost(nodes_count, g_from, g_to, g_weight)
   print travel_costs.map(&:sum).min
 end
 
+# NOTE: DFS with backtrack implemented;
+# 
+
+def generate_nodes(nodes_count, connected_from, connected_to, weight)
+  nodes = {}
+
+  nodes_count.times do |node_value|
+    node_value       += 1
+    nodes[node_value] = Node.new(value: node_value)
+  end
+
+  creator_counter = 0
+  while(creator_counter < connected_from.size)
+    node_value_a = connected_from[creator_counter]
+    node_value_b = connected_to[creator_counter]
+
+    nodes[node_value_a].connect(
+      node: nodes[node_value_b],
+      cost: weight[creator_counter]
+    )
+
+    creator_counter += 1
+  end
+
+  nodes
+end
+
+def get_cost_v2(nodes_count, connected_from, connected_to, weight)
+  nodes       = generate_nodes(nodes_count, connected_from, connected_to, weight)
+  start_node  = nodes.values.first
+  search_node = nodes.values.last
+
+  travel_costs = []
+  visited = [false] * nodes_count
+
+  start_weight    = 0
+  start_index     = 0
+  stack           = [[start_node.value, start_weight, start_index]]
+  backtrack_stack = []
+  backtracking    = false
+
+  stack_log       = []
+  travel_costs    = {}
+
+  while stack.size.positive?
+    current_value, current_cost, current_index = stack.pop
+
+    next if visited[current_index] && !backtracking
+
+    current_node           = nodes[current_value]
+    visited[current_index] = true
+
+    if current_node.value == search_node.value
+      backtracking = true
+    end
+
+    if !backtracking && current_node.value != start_node.value
+      travel_cost_key               = "#{nodes[stack_log.last].value}<->#{current_value}"
+      travel_costs[travel_cost_key] = current_cost
+    end
+
+    if current_node.value == start_node.value
+      backtracking = false
+    end
+
+    backtrack_stack << [current_node.value, 0, 0] unless backtracking || current_node.value == search_node.value
+    stack_log       << current_value
+
+    if backtracking
+      stack << backtrack_stack.pop
+    else
+      current_node.list_adjacent_nodes.each do |adjacent_value, adjacent_cost|
+        stack << [adjacent_value, adjacent_cost - current_cost, adjacent_value - 1]
+      end
+    end
+  end
+
+  byebug
+  print travel_costs
+end
+
 # g_nodes  = 5
 # g_from   = [1, 3, 1, 4, 2]
 # g_to     = [2, 5, 4, 5, 3]
@@ -125,4 +206,4 @@ g_from   = [1, 2, 3, 4, 1, 3]
 g_to     = [2, 3, 4, 5, 3, 5]
 g_weight = [30, 50, 70, 90, 70, 85]
 
-get_cost(g_nodes, g_from, g_to, g_weight)
+get_cost_v2(g_nodes, g_from, g_to, g_weight)
