@@ -4,7 +4,7 @@ describe Thing do
   before(:each) do
     @jane = Thing.new('Jane')
   end
-
+  
   describe 'jane = Thing.new("Jane")' do
     describe 'jane.name' do
       it 'should be "Jane"' do
@@ -34,6 +34,7 @@ describe Thing do
   describe '#has' do
     describe 'jane.has(2).arms' do
       before do 
+        @jane = Thing.new('Jane')
         @jane.has(2).arms
       end
 
@@ -49,6 +50,7 @@ describe Thing do
 
     describe 'jane.having(2).arms (alias)' do
       it 'should populate 2 new Thing instances within the array' do
+        @jane = Thing.new('Jane')
         @jane.having(2).arms
         expect(@jane.arms.size).to eq(2)
         expect(@jane.arms.all? {|v| v.is_a? Thing}).to eq(true)
@@ -57,6 +59,7 @@ describe Thing do
 
     describe 'jane.has(1).head' do
       before do 
+        @jane = Thing.new('Jane')
         @jane.has(1).head
       end
 
@@ -71,6 +74,7 @@ describe Thing do
 
     describe 'jane.has(1).head.having(2).eyes' do
       before do 
+        @jane = Thing.new('Jane')
         @jane.has(1).head.having(2).eyes
       end
 
@@ -88,6 +92,7 @@ describe Thing do
   describe '#each' do
     describe 'jane.has(2).arms.each { having(5).fingers }' do
       before do 
+        @jane = Thing.new('Jane')
         @jane.has(2).arms.each { |arm| arm.having(5).fingers }
       end
 
@@ -101,6 +106,7 @@ describe Thing do
   describe '#is_the' do
     describe 'jane.is_the.parent_of.joe' do
       before do 
+        @jane = Thing.new('Jane')
         @jane.is_the.parent_of.joe
       end
 
@@ -123,8 +129,9 @@ describe Thing do
   describe '#being_the' do
     describe 'jane.has(1).head.having(2).eyes.each { being_the.color.blue }' do
       it "jane's eyes should both be blue" do
+        @jane = Thing.new('Jane')
         @jane.has(1).head.having(2).eyes.each do |eye|
-          being_the.color.blue
+          eye.being_the.color.blue
         end
 
         expect(@jane.head.eyes.all? { |e| e.color == 'blue'}).to eq(true)
@@ -133,6 +140,7 @@ describe Thing do
 
     describe 'jane.has(2).eyes.each { being_the.color.blue.and_the.shape.round }' do
       it 'should allow chaining via the and_the method' do
+        @jane = Thing.new('Jane')
         @jane.has(2).eyes.each do |eye|
           eye.being_the.color.blue.and_the.shape.round
         end
@@ -144,6 +152,7 @@ describe Thing do
 
     describe 'jane.has(2).eyes.each { being_the.color.green.having(1).pupil.being_the.color.black }' do
       it 'should allow nesting by using having' do
+        @jane = Thing.new('Jane')
         @jane.has(3).eyes.each do |eye|
           eye.being_the.color.green.having(1).pupil.being_the.color.black
         end
@@ -157,20 +166,22 @@ describe Thing do
   describe '#can' do
     describe 'jane.can.speak {|phrase| "#{name} says: #{phrase}"}' do
       before do
+        @jane = Thing.new('Jane')
         @jane.can.speak do |phrase|
-          "#{name} says: #{phrase}"
+          "#{@jane.name} says: #{phrase}"
         end
       end
 
-      it 'should create a speak method on the instance' do        
+      it 'should create a speak method on the instance' do
         expect(@jane.speak('hi')).to eq("Jane says: hi")
       end
-    end
 
+    end
     describe 'jane.can.speak("spoke") {|phrase| "#{name} says: #{phrase}"}' do
       before do
+        @jane = Thing.new('Jane')
         @jane.can.speak('spoke') do |phrase|
-          "#{name} says: #{phrase}"
+          "#{@jane.name} says: #{phrase}"
         end
 
         @jane.speak('hi')
