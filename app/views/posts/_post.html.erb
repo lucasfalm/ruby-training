@@ -1,0 +1,10 @@
+<section id="post-<%= post.id %>" data-controller="post" data-post-id="<%= post.id %>" style="display: flex;flex-direction: column;padding: 1rem;gap: 1rem;border-radius: 0.5rem;background-color: black;color: white;">
+  <section style="cursor:pointer;" data-action="click->post#view">
+    <%= post.title %>
+    <%= post.content %>
+  </section>
+
+  <button data-action="click->post#delete">
+    delete
+  </button>
+</section>

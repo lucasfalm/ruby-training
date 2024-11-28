@@ -1,0 +1,8 @@
+<%#
+  Turbo Streams support other actions besides append:
+    prepend: Adds the content to the beginning of the target's children.
+    replace: Replaces the target element entirely.
+    update: Updates the target's inner HTML.
+    remove: Removes the target element from the DOM.
+%>
+<turbo-stream action="remove" target="post-<%= @post_id %>"></turbo-stream>
