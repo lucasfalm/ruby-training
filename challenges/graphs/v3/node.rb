@@ -3,17 +3,21 @@
 class Node
   attr_accessor :name, :edges
 
-  def initialize(name = "", edges = [])
-    @name  = name
-    @edges = edges
+  #
+  # NOTE: edges = [Node - /graphs/v3/node.rb]
+  #
+  def initialize(name: "", weight: nil, edges: [])
+    @name   = name
+    @weight = weight
+    @edges  = edges
   end
 
   def add_edge(node)
     @edges << node
   end
 
-  def remove_edge(node_name)
-    edge = @edges.find { |e| e.name == node_name }
+  def remove_edge(node)
+    edge = @edges.find { |edge| edge.name == node.name }
 
     @edges.delete(edge)
 

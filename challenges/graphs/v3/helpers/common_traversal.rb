@@ -5,14 +5,10 @@ module Helpers
     private
 
     #
-    # NOTE: dequeue_strategy_block(queue) -> Node
+    # NOTE: dequeue_strategy_block(queue) -> Node - /graphs/v3/node.rb
     #
     def common_traversal(initial_node, destination_node, &dequeue_strategy_block)
-      puts "\nfrom #{initial_node.name} to #{destination_node.name} \n\n"
-
-      unless initial_node && destination_node
-        return unreachable_message(initial_node, destination_node)
-      end
+      validate!(initial_node, destination_node)
 
       visited = {}
       queue   = [initial_node]
@@ -21,6 +17,9 @@ module Helpers
       while queue.any?
         puts "current queue -> #{queue.map(&:name).join(', ')}"
 
+        #
+        # NOTE: the dequeue_strategy_block is the main difference between BFS and DFS
+        #
         current_node = dequeue_strategy_block.call(queue)
 
         next if visited.key?(current_node.name)
@@ -37,17 +36,21 @@ module Helpers
         end
       end
 
-      puts "\n"
+      visited_message = "visited: #{visited.keys.join(', ')}"
 
       if result
-        "found! visited: #{visited.keys.join(', ')}"
+        "found! #{visited_message}"
       else
-        "#{unreachable_message(initial_node, destination_node)}, visited: #{visited.keys.join(', ')}"
+        "unreachable from #{initial_node.name} to #{destination_node.name}, visited: #{visited_message}"
       end
     end
 
-    def unreachable_message(initial_node, destination_node)
-      "unreachable from #{initial_node.name} to #{destination_node.name}"
+    def validate!(initial_node, destination_node)
+      puts "\nfrom #{initial_node.name} to #{destination_node.name} \n\n"
+
+      unless initial_node && destination_node
+        raise "invalid initial or destination node"
+      end
     end
   end
 end

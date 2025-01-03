@@ -1,7 +1,7 @@
 require './challenges/graphs/v3/graph.rb'
 require './challenges/graphs/v3/node.rb'
 
-nodes      = ('A'..'Z').map { |char| Node.new(char) }
+nodes      = ('A'..'Z').map { |char| Node.new(name: char) }
 nodes_hash = nodes.map { |node| [node.name, node] }.to_h
 
 edges = {
