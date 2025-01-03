@@ -1,6 +1,6 @@
 
-require "./challanges/x/y/peach_y"
-require "./challanges/x/y/peach_z"
+require "./challenges/x/y/peach_y"
+require "./challenges/x/y/peach_z"
 
 module Challenges
   module X

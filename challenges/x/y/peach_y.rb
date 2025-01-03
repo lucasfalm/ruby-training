@@ -1,4 +1,4 @@
-require "./challanges/x/z/peach_z"
+require "./challenges/x/z/peach_z"
 
 module Challenges
   module X
