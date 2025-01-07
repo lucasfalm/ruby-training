@@ -8,7 +8,7 @@ module Helpers
     # NOTE: dequeue_strategy_block(queue) -> Node - /graphs/v3/node.rb
     #
     def common_traversal(initial_node, destination_node, &dequeue_strategy_block)
-      validate!(initial_node, destination_node)
+      validate_common_traversal!(initial_node, destination_node)
 
       visited = {}
       queue   = [initial_node]
@@ -45,7 +45,7 @@ module Helpers
       end
     end
 
-    def validate!(initial_node, destination_node)
+    def validate_common_traversal!(initial_node, destination_node)
       puts "\nfrom #{initial_node.name} to #{destination_node.name} \n\n"
 
       unless initial_node && destination_node
