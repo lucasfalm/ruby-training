@@ -28,8 +28,9 @@ class Game
 
         if check_winner(player, reverse_row_index, column_index)
           @won = true
-          return
         end
+
+        return
       end
     end
 
